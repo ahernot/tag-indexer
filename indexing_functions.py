@@ -46,10 +46,33 @@ def get_dir_dict(dir_path: str) -> dict:
             dir_dict[dirname] = recur(dirpath)
 
         #   5. Adding the files contained in the parent directory
-        dir_dict[_files_] = [parent_dirpath + filename for filename in filenames_list]
+        dir_dict[_files_] = [parent_dirpath + filename for filename in filenames_list if filename[0] != '.']
 
         return dir_dict
 
     main_dir_dict = recur(dir_path)
 
     return main_dir_dict
+
+
+
+dir_stat = os.stat('/Users/Anatole/Documents/TEST-directory-branching')
+file_stat = os.stat('/Users/Anatole/Documents/TEST-directory-branching/file1.txt')
+print(dir_stat)
+print(file_stat)
+
+
+import subprocess
+
+def size_bytes(path: str) -> int:
+    cmd = ['find',
+           path,
+           '-type f -exec ls -l {} \; | awk \'{sum += $5} END {print sum}\''
+           ]
+    return int( subprocess.check_output([' '.join(cmd)], shell=True).decode('utf-8')[:-1] )
+
+# FROM https://superuser.com/questions/22460/how-do-i-get-the-size-of-a-linux-or-mac-os-x-directory-from-the-command-line
+print(
+    size_bytes(path = '/Users/Anatole/Documents/TEST-directory-branching')
+)
+
