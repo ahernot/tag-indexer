@@ -4,10 +4,10 @@ import basic_functions as BFunc
 
 
 
-def get_dir_contents(dir_path: str):
+def get_dir_contents(parent_dirpath: str):
     dirnames_list, filenames_list = list(), list()
 
-    for (dirpath, dirnames, filenames) in os.walk(dir_path):
+    for (dirpath, dirnames, filenames) in os.walk(parent_dirpath):
         dirnames_list.extend(dirnames)
         filenames_list.extend(filenames)
         break
@@ -16,60 +16,40 @@ def get_dir_contents(dir_path: str):
 
 
 
-def get_all_files_stack(dir_path: str, lvl: int, run_id: int, main_dirs_list: list, main_filepaths_list: list):
-    _psep_ = '/'
+def get_dir_dict(dir_path: str) -> dict:
+    """
+    Recursive function to get all the contents of a directory.
+    :param dir_path: The path of the directory to analyse
+    :return: The directory's hierarchy dictionary
+    """
 
-    #   1. Correcting directory_path to always end with '/'
-    dir_path = BFunc.format_dir_path(dir_path)
+    _files_ = '_files_'
 
-    #   2.1. Incrementing the 'depth' level (the 'indentation')
-    lvl += 1
-    #   2.2. Incrementing run_id (for each separate run of the function, stacked since it is returned out of the function)
-    run_id += 1
+    def recur(parent_dirpath: str) -> dict:
 
-    #   3. Reading the current folder's sub-folders and single files
-    dirnames_list, filenames_list = get_dir_contents(dir_path)
+        #   1. Initialising the directory's dictionary
+        dir_dict = dict()
 
-    #   4. Adding the current folder's data to the global data lists (in position run_id)
-    main_dirs_list.append(dirnames_list)  # on position run_id
+        #   2. Formatting the parent directory's path (making sure that a path separator is present at the end)
+        parent_dirpath = BFunc.format_dir_path(parent_dirpath)
 
-    #   5. Appending the path of each file in the current folder to the main filepaths list
-    for filename in filenames_list:
-        filepath = dir_path + filename
-        main_filepaths_list.append(filepath)
+        #   3. Getting the contents of the parent directory
+        dirnames_list, filenames_list = get_dir_contents(parent_dirpath)
 
-    #   6. Running through the sub-folders
-    for folder in main_dirs_list[run_id]:
+        #   4. Processing the child directories
+        for dirname in dirnames_list:
 
-        #   6.1. Generating the sub-folder's path
-        sub_path = dir_path + folder + _psep_
+            #   4.1. Getting the child directory's path
+            dirpath = parent_dirpath + dirname
 
-        #   6.2. Running the current function for the sub-folder: will update run_id, main_folder_list (with one more item), and main_filepath_list (with all the new files) lists
-        run_id, main_dirs_list , main_filepaths_list = get_all_files_stack(sub_path, lvl, run_id, main_dirs_list , main_filepaths_list)
+            #   4.2. Recursive call of the function to get the child directory's contents dictionary
+            dir_dict[dirname] = recur(dirpath)
 
-    return run_id, main_dirs_list , main_filepaths_list
+        #   5. Adding the files contained in the parent directory
+        dir_dict[_files_] = [parent_dirpath + filename for filename in filenames_list]
 
+        return dir_dict
 
-def get_all_files(dir_path: str):
-    return get_all_files_stack(dir_path, 0, -1, [], [])[2]
+    main_dir_dict = recur(dir_path)
 
-
-
-x = get_all_files('/Users/Anatole/Documents')
-print(x)
-
-
-"""
-REQ: dictionary with
-
-dir
-    subdir
-        subsubdir
-        file
-    subdir
-        subsubdir
-        file
-    file
-    file
-
-"""
+    return main_dir_dict
