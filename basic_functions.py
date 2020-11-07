@@ -37,3 +37,8 @@ def remove_on_edges(line: str, *chars: str) -> str:
         while line[-1] == char_to_remove:
             line = line[:-1]
     return line
+
+def format_dir_path(dir_path: str):
+    if dir_path[-1] != '/':
+        dir_path += '/'
+    return dir_path

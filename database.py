@@ -36,7 +36,7 @@ for line in tags_database_list + [_stop_]:
         parent_folder = line_raw
 
 
-    #   .5. No tolerance for mismanaged indents
+    #   .5. (no tolerance for mismanaged indents)
     elif line_indent == line_indent_child:
         tag_name = '' # unique
         tag_path = ''

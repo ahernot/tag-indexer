@@ -1,1 +1,1 @@
-folder_to_process = ''
+dir_to_process = ''
