@@ -10,6 +10,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
 * Add tag-specific processing (will only create aliases for new tags)
 * Add alias deletion according to missing files from the beacons (if no beacon, delete all and recreate all)
 * Program tag folder processing (with the `%`, etc.)
+* Add live time estimates, to be integrated in `indexing_functions.py`
 * v2: Add a `case_sensitivity` setting in `preferences.py`
 
 
