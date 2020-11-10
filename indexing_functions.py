@@ -4,7 +4,8 @@ import subprocess
 
 import preferences as Pref
 import basic_functions as BFunc
-import beacons_sizes
+import file_analysis as FFunc
+import beacons_sizes, beacons_tags
 
 
 _files_ = Pref._files_
@@ -23,7 +24,7 @@ def get_dir_contents(parent_dirpath: str):
 
 
 
-def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
+def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, skip_unmodified_tags: bool = True):
     """
     Recursive function to process a directory
     :param dir_path: The path of the directory to analyse
@@ -36,14 +37,20 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
         #   1. Formatting the parent directory's path (making sure that a path separator is present at the end)
         parent_dirpath = BFunc.format_dir_path(parent_dirpath)
 
-        #   2. Getting the contents of the parent directory
+        #   2.1. Getting the contents of the parent directory
         dirnames_list, filenames_list = get_dir_contents(parent_dirpath)
+        #   2.2. Adding the parent directory's path to get lists of paths
+        dirpaths_list = [parent_dirpath + dirname for dirname in dirnames_list]
+        filepaths_list = [parent_dirpath + filename for filename in filenames_list]
 
 
 
-        #   3. Reading the parent directory's beacon file
+        #   3.1. Reading the parent directory's sizes beacon file
         if skip_unmodified_dirs:
-            beacon_dict = beacons_sizes.read_beacon(parent_dirpath)
+            beacon_sizes_dict = beacons_sizes.read_beacon(parent_dirpath)
+        #   3.2. Reading the parent directory's tags beacon file
+        if skip_unmodified_tags:
+            beacon_tags_dict = beacons_tags.read_beacon(parent_dirpath)
 
 
 
@@ -60,7 +67,8 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
                 dirsize_bytes = size_bytes(dirpath)
 
                 #   4.2.2. Skipping the processing of the branch if the beacon's value match the current ones
-                if beacons_sizes.matches_beacon(beacon_dict, dirpath, dirsize_bytes): continue
+                if beacons_sizes.matches_beacon(beacon_sizes_dict, dirpath, dirsize_bytes):
+                    continue
 
             #   4.3. Recursive call of the function to get the child directory's contents dictionary
             recur(dirpath)
@@ -68,14 +76,47 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
 
 
         #   5. Processing the files
-        for filename in filenames_list:
+        for filepath in filepaths_list:
 
-            filepath = parent_dirpath + filename
+            #   5.1. Optional skipping of seemingly unmodified files
+            if skip_unmodified_dirs:
+
+                #   5.1.1. Calculating the size of the child directory
+                filesize_bytes = size_bytes(filepath)
+
+                #   5.1.2. Skipping the processing of the branch if the beacon's value match the current ones
+                if beacons_sizes.matches_beacon(beacon_sizes_dict, filepath, filesize_bytes):
+                    continue
+
+            #   5.2. Reading the file's tags
+            tags_list = FFunc.get_tags(filepath)
+
+            #   5.3. Optional skipping of unmodified tags
+            if skip_unmodified_tags:
+
+                #   5.3.1. Skipping the processing of the file if the beacon's value match the current ones
+                if beacons_tags.matches_beacon(beacon_tags_dict, filepath, tags_list):
+                    continue
+
+
+
+
+            print('GENERATING ALIASES')
+            #use tags_analysis.py
+
+
+
+
+        #   6.1. Regenerating the parent directory's sizes beacon file
+        if skip_unmodified_dirs:
+            beacons_sizes.write_beacon(parent_dirpath, dirpaths_list)
+        #   6.2. Regenerating the parent directory's tags beacon file
+        if skip_unmodified_tags:
+            beacons_tags.write_beacon(parent_dirpath, filepaths_list)
+
 
 
     recur(dir_path)
-
-    #return main_dir_dict
 
 
 
