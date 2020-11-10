@@ -1,4 +1,6 @@
-# defaults write com.apple.finder AppleShowAllFiles YES
+"""
+This file manages file size hidden beacon files in directories.
+"""
 
 #   IMPORTING THIRD-PARTY LIBRARIES
 # -
