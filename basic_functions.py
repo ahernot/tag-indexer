@@ -1,3 +1,5 @@
+import preferences as Pref
+
 def count_indent(line: str, indent_marker: str = '\t') -> int:
     """
     This function counts the indentation level of a given string.
@@ -39,6 +41,7 @@ def remove_on_edges(line: str, *chars: str) -> str:
     return line
 
 def format_dir_path(dir_path: str):
-    if dir_path[-1] != '/':
-        dir_path += '/'
+    _psep_ = Pref._psep_
+    if dir_path[-1] != _psep_:
+        dir_path += _psep_
     return dir_path
