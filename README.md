@@ -26,6 +26,6 @@ This is a macOS platform-specific program designed to permanently alias (using t
 
 ## File hierarchy
 0 - `MAIN.py`
-    1 - `beacons.py`
-    1 - `database.py`
-        2 - `indexing_functions.py`
+<br>    1 - `beacons.py`
+<br>    1 - `database.py`
+<br>        2 - `indexing_functions.py`
