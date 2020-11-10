@@ -22,7 +22,7 @@ def read_beacon(dirpath: str) -> dict:
     #   0. Generating the output dictionary
     beacon_dict = dict()
 
-    #   1. Formatting the directory path (adding the final '/')
+    #   1. Formatting the directory path (making sure that a path separator is present at the end)
     dirpath = BFunc.format_dir_path(dirpath)
 
     #   2. Opening the beacon file
@@ -65,7 +65,7 @@ def write_beacon(dirpath: str, children_paths: list, filename: str = beacon_name
     :return: The path of the generated beacon
     """
 
-    #   1. Formatting the directory path (adding the final '/')
+    #   1. Formatting the directory path (making sure that a path separator is present at the end)
     dirpath = BFunc.format_dir_path(dirpath)
 
     #   2. Generating the beacon file's path
@@ -86,3 +86,15 @@ def write_beacon(dirpath: str, children_paths: list, filename: str = beacon_name
             beacon.write(line)
 
     return beaconpath
+
+
+
+
+def matches_beacon(beacon_dict: dict, dirpath: str, dirsize_bytes: int) -> bool:
+
+    try:
+        beacon_size = beacon_dict[dirpath]
+        return beacon_size == dirsize_bytes
+
+    except KeyError:
+        return False
