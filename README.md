@@ -31,4 +31,4 @@ This is a macOS platform-specific program designed to permanently alias (using t
 <br><br>
 ## Instructions
 * To be continued
-* To display hidden files (macOS): type `defaults write com.apple.finder AppleShowAllFiles YES` in the macOS `Terminal.app` app
+* To display hidden files (macOS): type `defaults write com.apple.finder AppleShowAllFiles YES` in the macOS Terminal app
