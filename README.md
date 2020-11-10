@@ -21,11 +21,3 @@ This is a macOS platform-specific program designed to permanently alias (using t
 * Running through the directories to decipher changes (operating principle: dir size change $\Leftrightarrow$ dir change, yet not always true)
     * Or maybe can use dir edit date, if reliable? More tests needed
 * Change will be compared with the contents of the '.pytags' hidden file
-
-
-
-## File hierarchy
-0 - `MAIN.py`
-<br>    1 - `beacons.py`
-<br>    1 - `database.py`
-<br>        2 - `indexing_functions.py`
