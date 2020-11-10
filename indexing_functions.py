@@ -74,7 +74,7 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
 
 
 
-
+## LEGACY FUNCTION
 def get_dir_dict(dir_path: str) -> dict:
     """
     Recursive function to get all the contents of a directory.
