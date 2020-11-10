@@ -1,14 +1,13 @@
-# defaults write com.apple.finder AppleShowAllFiles YES
-
 
 import basic_functions as BFunc
-import indexing_functions as IFunc
+import file_analysis as FFunc
 import preferences as Pref
 
 
 _lsep_ = Pref._lsep_
 _dsep_ = Pref._dsep_
-beacon_name = '.pytags_sizes'
+_tsep_ = Pref._tsep_
+beacon_name = '.pytags_tags'
 
 
 
@@ -46,10 +45,10 @@ def read_beacon(dirpath: str) -> dict:
         if len(line_split) != 2: continue
 
         #   4.3. Unpacking
-        childpath, child_size = line_split
+        childpath, child_tags = line_split
 
         #   4.4. Writing to the output dictionary
-        beacon_dict[childpath] = int(child_size)
+        beacon_dict[childpath] = child_tags.split(_tsep_)
 
     return beacon_dict
 
@@ -77,10 +76,11 @@ def write_beacon(dirpath: str, children_paths: list, filename: str = beacon_name
         for childpath in children_paths:
 
             #   3.1. Calculating the size of the child file or directory
-            size = IFunc.size_bytes(childpath)
+            tags_list = FFunc.get_tags(childpath)
+            tags_str  = _tsep_.join(tags_list)
 
             #   3.2. Generating the line
-            line = f'{childpath}{_dsep_}{size}{_lsep_}'
+            line = f'{childpath}{_dsep_}{tags_str}{_lsep_}'
 
             #   3.3. Writing to the file
             beacon.write(line)
