@@ -90,11 +90,11 @@ def write_beacon(dirpath: str, children_paths: list, filename: str = beacon_name
 
 
 
-def matches_beacon(beacon_dict: dict, dirpath: str, dirsize_bytes: int) -> bool:
+def matches_beacon(beacon_dict: dict, dirpath_key: str, tags_list: list) -> bool:
 
     try:
-        beacon_size = beacon_dict[dirpath]
-        return beacon_size == dirsize_bytes
+        beacon_size = beacon_dict[dirpath_key]
+        return beacon_size == tags_list
 
     except KeyError:
         return False
