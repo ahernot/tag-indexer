@@ -26,3 +26,9 @@ This is a macOS platform-specific program designed to permanently alias (using t
     * Or maybe can use dir edit date, if reliable? More tests needed
 * Change will be compared with the contents of the '.pytags' hidden file
 * Only files' tags will be accounted for by the program
+
+
+
+## Instructions
+* To be continued
+* To display hidden files (macOS): type `defaults write com.apple.finder AppleShowAllFiles YES` in the macOS `Terminal.app` app
