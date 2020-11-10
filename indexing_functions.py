@@ -4,7 +4,7 @@ import subprocess
 
 import preferences as Pref
 import basic_functions as BFunc
-import beacons
+import beacons_sizes
 
 
 _files_ = Pref._files_
@@ -42,7 +42,7 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
 
 
         #   3. Reading the parent directory's beacon file
-        beacon_dict = beacons.read_beacon(parent_dirpath)
+        beacon_dict = beacons_sizes.read_beacon(parent_dirpath)
 
 
 
@@ -56,7 +56,7 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
             dirsize_bytes = size_bytes(dirpath)
 
             #   4.3. Skipping the processing of the branch if the beacon's value match the current ones
-            if beacons.matches_beacon(beacon_dict, dirpath, dirsize_bytes): continue
+            if beacons_sizes.matches_beacon(beacon_dict, dirpath, dirsize_bytes): continue
 
             #   4.4. Recursive call of the function to get the child directory's contents dictionary
             recur(dirpath)
