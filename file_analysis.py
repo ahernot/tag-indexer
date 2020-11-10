@@ -11,11 +11,10 @@ _lsep_ = Pref._lsep_
 
 def bplist_to_list(bplist: bytes) -> list:
     """
-    This function decodes bplist bytes strings.
+    This function decodes bplist bytes strings. Adapted from https://stackoverflow.com/questions/8856032/reading-binary-plist-files-with-python.
     :param bplist: The bplist to decode
     :return: The bplist's list representation
     """
-    # from https://stackoverflow.com/questions/8856032/reading-binary-plist-files-with-python
 
     args = ['plutil', '-convert', 'json', '-o', '-', '--', '-']
     p = Popen(args, stdin=PIPE, stdout=PIPE)
