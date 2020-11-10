@@ -1,4 +1,14 @@
+
+#   IMPORTING THIRD-PARTY LIBRARIES
+# -
+
+#   IMPORTING PROJECT FILES
 import preferences as Pref
+
+#   DEFINING FILE-WIDE VARIABLES
+# -
+
+
 
 def count_indent(line: str, indent_marker: str = '\t') -> int:
     """
@@ -16,21 +26,26 @@ def count_indent(line: str, indent_marker: str = '\t') -> int:
 
 
 
-
 def replace_char(line:str, char: str, replacement: str = '') -> str:
     while char in line:
         line = line.replace(char, replacement)
     return line
+
+
 
 def replace_chars(line: str, chars_dict: dict) -> str:
     for char_to_replace in chars_dict:
         line = replace_char(line, char_to_replace, chars_dict[char_to_replace])
     return line
 
+
+
 def remove_chars(line: str, *chars: str) -> str:
     for char_to_remove in chars:
         line = replace_char(line, char_to_remove)
     return line
+
+
 
 def remove_on_edges(line: str, *chars: str) -> str:
     for char_to_remove in chars:
@@ -39,6 +54,8 @@ def remove_on_edges(line: str, *chars: str) -> str:
         while line[-1] == char_to_remove:
             line = line[:-1]
     return line
+
+
 
 def format_dir_path(dir_path: str):
     _psep_ = Pref._psep_

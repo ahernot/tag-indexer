@@ -1,13 +1,18 @@
 
+
+#   IMPORTING THIRD-PARTY LIBRARIES
+# -
+
+#   IMPORTING PROJECT FILES
 import basic_functions as BFunc
 import file_analysis as FFunc
 import preferences as Pref
 
-
+#   DEFINING FILE-WIDE VARIABLES
 _lsep_ = Pref._lsep_
 _dsep_ = Pref._dsep_
 _tsep_ = Pref._tsep_
-beacon_name = '.pytags_tags'
+beacon_name = Pref.beacon_tags_name
 
 
 

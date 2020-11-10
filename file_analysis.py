@@ -1,10 +1,16 @@
+"""
+This file manages reading tags from files.
+"""
+
+#   IMPORTING THIRD-PARTY LIBRARIES
 import xattr
 import json
 from subprocess import Popen, PIPE
 
-
+#   IMPORTING PROJECT FILES
 import preferences as Pref
 
+#   DEFINING FILE-WIDE VARIABLES
 _lsep_ = Pref._lsep_
 
 

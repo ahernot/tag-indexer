@@ -1,6 +1,11 @@
+#   IMPORTING THIRD-PARTY LIBRARIES
+# -
+
+#   IMPORTING PROJECT FILES
 import basic_functions as BFunc
 import preferences as Pref
 
+#   DEFINING FILE-WIDE VARIABLES
 _dsep_ = Pref._dsep_
 _psep_ = Pref._psep_
 
@@ -10,6 +15,7 @@ indent_marker = _dsep_
 indent_len = len(indent_marker)
 line_indent_parent = 0
 line_indent_child  = 1
+
 
 
 def read() -> dict:

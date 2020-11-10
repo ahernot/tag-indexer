@@ -1,14 +1,17 @@
 # defaults write com.apple.finder AppleShowAllFiles YES
 
+#   IMPORTING THIRD-PARTY LIBRARIES
+# -
 
+#   IMPORTING PROJECT FILES
 import basic_functions as BFunc
 import indexing_functions as IFunc
 import preferences as Pref
 
-
+#   DEFINING FILE-WIDE VARIABLES
 _lsep_ = Pref._lsep_
 _dsep_ = Pref._dsep_
-beacon_name = '.pytags_sizes'
+beacon_name = Pref.beacon_sizes_name
 
 
 

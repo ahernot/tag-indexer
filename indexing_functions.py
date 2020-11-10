@@ -1,13 +1,19 @@
-# FROM https://superuser.com/questions/22460/how-do-i-get-the-size-of-a-linux-or-mac-os-x-directory-from-the-command-line
+"""
+This file manages running through the file hierarchy and analysing accordingly.
+FROM https://superuser.com/questions/22460/how-do-i-get-the-size-of-a-linux-or-mac-os-x-directory-from-the-command-line
+"""
+
+#   IMPORTING THIRD-PARTY LIBRARIES
 import os
 import subprocess
 
+#   IMPORTING PROJECT FILES
 import preferences as Pref
 import basic_functions as BFunc
 import file_analysis as FFunc
 import beacons_sizes, beacons_tags
 
-
+#   DEFINING FILE-WIDE VARIABLES
 _files_ = Pref._files_
 
 

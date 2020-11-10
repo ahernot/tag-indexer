@@ -1,5 +1,17 @@
+"""
+This file manages interpreting the tags database.
+"""
 
+#   IMPORTING THIRD-PARTY LIBRARIES
+# -
+
+#   IMPORTING PROJECT FILES
 import database
+
+#   DEFINING FILE-WIDE VARIABLES
+# -
+
+
 
 ## Function to read all the user-defined tags in the database and find correct matches among a file's taglist
 

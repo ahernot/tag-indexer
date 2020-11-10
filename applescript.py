@@ -1,4 +1,12 @@
+#   IMPORTING THIRD-PARTY LIBRARIES
 import os
+
+#   IMPORTING PROJECT FILES
+# -
+
+#   DEFINING FILE-WIDE VARIABLES
+# -
+
 
 def make_alias(parent_path: str, child_path: str):
     """
