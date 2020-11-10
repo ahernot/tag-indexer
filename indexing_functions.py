@@ -42,7 +42,8 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
 
 
         #   3. Reading the parent directory's beacon file
-        beacon_dict = beacons_sizes.read_beacon(parent_dirpath)
+        if skip_unmodified_dirs:
+            beacon_dict = beacons_sizes.read_beacon(parent_dirpath)
 
 
 
@@ -52,17 +53,24 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
             #   4.1. Getting the child directory's path
             dirpath = parent_dirpath + dirname
 
-            #   4.2. Calculating the size of the child directory
-            dirsize_bytes = size_bytes(dirpath)
+            #   4.2. Optional skipping of seemingly unmodified directories
+            if skip_unmodified_dirs:
 
-            #   4.3. Skipping the processing of the branch if the beacon's value match the current ones
-            if beacons_sizes.matches_beacon(beacon_dict, dirpath, dirsize_bytes): continue
+                #   4.2.1. Calculating the size of the child directory
+                dirsize_bytes = size_bytes(dirpath)
 
-            #   4.4. Recursive call of the function to get the child directory's contents dictionary
+                #   4.2.2. Skipping the processing of the branch if the beacon's value match the current ones
+                if beacons_sizes.matches_beacon(beacon_dict, dirpath, dirsize_bytes): continue
+
+            #   4.3. Recursive call of the function to get the child directory's contents dictionary
             recur(dirpath)
 
 
+
         #   5. Processing the files
+        for filename in filenames_list:
+
+            filepath = parent_dirpath + filename
 
 
     recur(dir_path)
