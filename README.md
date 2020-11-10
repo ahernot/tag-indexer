@@ -3,7 +3,7 @@
 This is a macOS platform-specific program designed to permanently alias (using the Unix aliasing method) files according to their tags.
 
 
-
+<br><br>
 ## To do
 * Unify the docstrings and file formatting (module imports, …)
 * Add a `.pytags_tags` everywhere there is a FILE (not a dir), to compare lists of tags
@@ -14,12 +14,12 @@ This is a macOS platform-specific program designed to permanently alias (using t
 * v2: Add a `case_sensitivity` setting in `preferences.py`
 
 
-
+<br><br>
 ## Changelog
 * Nothing to show
 
 
-
+<br><br>
 ## Working principle
 * Retrieving tags to process from the tags database
 * Running through the directories to decipher changes (operating principle: dir size change $\Leftrightarrow$ dir change, yet not always true)
@@ -28,7 +28,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
 * Only files' tags will be accounted for by the program
 
 
-
+<br><br>
 ## Instructions
 * To be continued
 * To display hidden files (macOS): type `defaults write com.apple.finder AppleShowAllFiles YES` in the macOS `Terminal.app` app
