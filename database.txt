@@ -13,11 +13,11 @@ Ratings
 
 
 Scenes
-	scene%Scene%	%Scene%
+	scene%	%
 
 
 Types
-	type%Type%	%Type%
+	type%	%
 	typeTimelapse	Timelapses
 	typePanorama	Panoramas
 	360 Photo	360 Photos (old – replace with type360)
@@ -37,7 +37,7 @@ Types
 
 
 Cameras
-	camera%camera_name%	%camera_name%
+	camera%	%
 	cameraMavicAir	DJI Mavic Air
 	cameraIxus155	Canon IXUS 155
 	cameraEOS5D2	Canon EOS 5D Mark II
@@ -49,12 +49,12 @@ Cameras
 
 
 People
-	people%PersonName%	%Person Name%
+	people%	%
 
 
 Subjects
-	subject%Subject%	%Subject%
+	subject%	%
 
 
 Photographers
-	shotby%PersonName%	%Person Name%
+	shotby%	%

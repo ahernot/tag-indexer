@@ -6,7 +6,11 @@ This is a macOS platform-specific program designed to permanently alias (using t
 
 ## To do
 * Unify the docstrings and file formatting (module imports, …)
-* v2: Create a '.pytags' hidden file in each directory to reference the files/tags
+* Add a `.pytags_tags` everywhere there is a FILE (not a dir), to compare lists of tags
+    * `beacons.py` will become `beacons_size.py` and create a new `beacons_tags.py` file for these tag beacons
+    * During processing, choose to ignore seemingly size-unmodified folders and go deeper to the actual files
+    * If the list of tags matches the `.pytags_tags` file, then skip iteration and DELETE OLD ALIASES
+    * Else, create aliases
 
 
 

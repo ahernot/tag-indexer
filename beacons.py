@@ -8,7 +8,7 @@ import preferences as Pref
 
 _lsep_ = Pref._lsep_
 _dsep_ = Pref._dsep_
-beacon_name = '.pytags'
+beacon_name = '.pytags_sizes'
 
 
 

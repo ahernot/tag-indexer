@@ -65,7 +65,7 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
         #   5. Processing the files
 
 
-    main_dir_dict = recur(dir_path)
+    recur(dir_path)
 
     #return main_dir_dict
 
