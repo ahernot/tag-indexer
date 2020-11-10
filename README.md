@@ -11,6 +11,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
     * During processing, choose to ignore seemingly size-unmodified folders and go deeper to the actual files
     * If the list of tags matches the `.pytags_tags` file, then skip iteration and DELETE OLD ALIASES
     * Else, create aliases
+* v2: Add a `case_sensitivity` setting in `preferences.py`
 
 
 
