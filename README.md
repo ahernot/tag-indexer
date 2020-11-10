@@ -5,8 +5,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
 
 
 ## To do
-* New file indexing function to return a hierarchised dictionary of all directories and files, for selective processing
-* The rest of the program, too
+* Unify the docstrings and file formatting (module imports, …)
 * v2: Create a '.pytags' hidden file in each directory to reference the files/tags
 
 
