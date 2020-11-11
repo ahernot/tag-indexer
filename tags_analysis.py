@@ -13,6 +13,21 @@ import database
 
 
 
+
+
+
+def write_tag():
+
+    #case-sensitivity
+
+    tag = ''
+    lis = []
+    if tag in lis:
+        pass#add
+    else:
+        pass#run through all keys
+
+
 ## Function to read all the user-defined tags in the database and find correct matches among a file's taglist
 
 
