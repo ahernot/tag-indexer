@@ -103,3 +103,22 @@ def matches_beacon(beacon_dict: dict, dirpath_key: str, tags_list: list) -> bool
 
     except KeyError:
         return False
+
+
+
+
+def get_removed_files(children_paths: list, beacon_dict: dict) -> dict:
+    """
+    This function returns all the keys which are present in the beacon file but not in the provided list of files.
+    :param children_paths: The list of filepaths
+    :param beacon_dict: The generated beacon dictionary for the parent folder
+    :return: The dictionary of removed files and their tags (according to the beacon_dict dictionary)
+    """
+    removed_dict = dict()
+
+    for filepath in beacon_dict.keys():
+        if filepath not in children_paths:
+            removed_dict[filepath] = beacon_dict[filepath].copy()
+
+    return removed_dict
+
