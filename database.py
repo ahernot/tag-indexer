@@ -30,14 +30,12 @@ def read() -> dict:
     parent_folder = default_parent_folder
 
     #   2. Reading the database file
-    with open(Pref.database_path, 'r', encoding='utf-8') as tags_database:
+    database_path = Pref.main_path + Pref.database_name
+    with open(database_path, 'r', encoding='utf-8') as tags_database:
         tags_database_list = tags_database.readlines()
 
     #   3. Processing the database's lines
     for line in tags_database_list + [_stop_]:
-
-        #   3.0. Skipping the iteration if the parent folder is the default one
-        if parent_folder == default_parent_folder: continue
 
         #   3.1. Counting the indentation level of the line
         line_indent = BFunc.count_indent(line, indent_marker)
@@ -57,8 +55,11 @@ def read() -> dict:
         #   3.5. (no tolerance for mismanaged indents)
         elif line_indent == line_indent_child:
 
+            #   3.5.0. Skipping the rest of the iteration if the parent folder is the default one
+            if parent_folder == default_parent_folder: continue
+
             #   3.5.1. Splitting along the data separator
-            line_split = line.split(_dsep_)
+            line_split = line_raw.split(_dsep_)
             if len(line_split) != 2: continue
 
             #   3.5.2. Unpacking
