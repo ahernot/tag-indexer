@@ -24,7 +24,6 @@ def bplist_to_list(bplist: bytes) -> list:
 
     args = ['plutil', '-convert', 'json', '-o', '-', '--', '-']
     p = Popen(args, stdin=PIPE, stdout=PIPE)
-
     out, err = p.communicate(bplist)
 
     return json.loads(out)
