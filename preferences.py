@@ -23,7 +23,9 @@ _dsep_ = '\t' # data separator
 _lsep_ = '\n' # line separator
 _psep_ = '/' # path separator
 _tsep_ = ', ' # tags list separator
+_ssep_ = ' ' # space separator
 
+tag_placeholder = '%'
 
 database_name = 'database.txt' # relative database path
 
