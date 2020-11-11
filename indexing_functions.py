@@ -11,7 +11,9 @@ import subprocess
 import preferences as Pref
 import basic_functions as BFunc
 import file_analysis as FFunc
-import beacons_sizes, beacons_tags
+import beacons_sizes as SBeacons
+import beacons_tags as TBeacons
+import tags_processing as Tags
 
 #   DEFINING FILE-WIDE VARIABLES
 _files_ = Pref._files_
@@ -53,10 +55,10 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, 
 
         #   3.1. Reading the parent directory's sizes beacon file
         if skip_unmodified_dirs:
-            beacon_sizes_dict = beacons_sizes.read_beacon(parent_dirpath)
+            beacon_sizes_dict = SBeacons.read_beacon(parent_dirpath)
+
         #   3.2. Reading the parent directory's tags beacon file
-        if skip_unmodified_tags:
-            beacon_tags_dict = beacons_tags.read_beacon(parent_dirpath)
+        beacon_tags_dict = TBeacons.read_beacon(parent_dirpath)
 
 
 
@@ -73,7 +75,7 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, 
                 dirsize_bytes = size_bytes(dirpath)
 
                 #   4.2.2. Skipping the processing of the branch if the beacon's value match the current ones
-                if beacons_sizes.matches_beacon(beacon_sizes_dict, dirpath, dirsize_bytes):
+                if SBeacons.matches_beacon(beacon_sizes_dict, dirpath, dirsize_bytes):
                     continue
 
             #   4.3. Recursive call of the function to get the child directory's contents dictionary
@@ -91,34 +93,41 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, 
                 filesize_bytes = size_bytes(filepath)
 
                 #   5.1.2. Skipping the processing of the branch if the beacon's value match the current ones
-                if beacons_sizes.matches_beacon(beacon_sizes_dict, filepath, filesize_bytes):
+                if SBeacons.matches_beacon(beacon_sizes_dict, filepath, filesize_bytes):
                     continue
 
             #   5.2. Reading the file's tags
             tags_list = FFunc.get_tags(filepath)
+            # these are the tags to process
 
             #   5.3. Optional skipping of unmodified tags
             if skip_unmodified_tags:
 
-                #   5.3.1. Skipping the processing of the file if the beacon's value match the current ones
-                if beacons_tags.matches_beacon(beacon_tags_dict, filepath, tags_list):
+                #   5.3.1. Skipping the processing of the file if the beacon's value matches the current ones
+                if TBeacons.matches_beacon(beacon_tags_dict, filepath, tags_list):
                     continue
 
-
-
+            # run through the tags beacon. if path doesn't exist, remove all aliases
 
             print('GENERATING ALIASES')
-            #use tags_analysis.py
+            # use tags_processing.py
+
+
+        #   REMOVING ALIASES FOR DELETED/MOVED FILES
+        removed_dict = TBeacons.get_removed_files(parent_dirpath, beacon_tags_dict)
+        for filepath in removed_dict:
+            Tags.remove_aliases(filepath, *removed_dict[filepath])
+
 
 
 
 
         #   6.1. Regenerating the parent directory's sizes beacon file
         if skip_unmodified_dirs:
-            beacons_sizes.write_beacon(parent_dirpath, dirpaths_list)
+            SBeacons.write_beacon(parent_dirpath, dirpaths_list)
+
         #   6.2. Regenerating the parent directory's tags beacon file
-        if skip_unmodified_tags:
-            beacons_tags.write_beacon(parent_dirpath, filepaths_list)
+        TBeacons.write_beacon(parent_dirpath, filepaths_list)
 
 
 
