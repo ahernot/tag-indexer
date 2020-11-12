@@ -60,8 +60,33 @@ def format_tag_data(tag_data: str) -> str:
 
 
 def generate_alias_name(filepath: str) -> str:
-    alias_name = ''
+    """
+    This function generates an alias name based on a predfined template for a specific filepath.
+    :param filepath: The path of the file to alias
+    :return: The name of the alias file
+    """
+
+    #   1. Generating the alias name's template
+    alias_name = '{date}-{name}-alias'
+
+    #   2. Processing the filepath
+    dirpath, filename = BFunc.split_filepath(filepath)
+    name, extension = BFunc.split_filename(filename)
+
+    #   3. Getting the formatted creation date string (will look at file creation date only)
+    date = BFunc.get_date_formatted(filepath)
+
+    #   4. Generating the formatting dictionary
+    format_dict = {
+        'date': date,
+        'name': name
+    }
+
+    #   5. Formatting the alias name
+    alias_name.format(**format_dict)
+
     return alias_name
+
 
 
 
