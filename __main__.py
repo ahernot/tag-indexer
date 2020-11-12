@@ -12,10 +12,6 @@ import indexing_functions as IFunc
 main_directory = Pref.dir_to_process
 
 
-
-######################### TIME ESTIMATE
-
-
 def run():
 
     #   1. Analysing the main directory if ETA calculation (to know the number of files to process
@@ -25,14 +21,10 @@ def run():
         ### ADD A BOOL OPTION TO COUNT THE NUMBER OF FILES // GET STATS
         ### AND A BOOL OPTION TO GET A FLAT LIST OF FILES TOO
 
-
-    IFunc.process_dir_dict_beacons()
+    IFunc.process_dir_beacons(main_directory)
 
 
 
 
 if __name__ == '__main__':
-
-    pass
-
-
+    run()
