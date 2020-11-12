@@ -26,6 +26,8 @@ tag_placeholder = Pref.tag_placeholder
 _ssep_ = Pref._ssep_
 special_tags_dict = dict([ (tag_name, tags_dictionary[tag_name]) for tag_name in tags_dictionary if tag_name[-1] == tag_placeholder ])
 
+alias_dir = Pref.alias_dir
+alias_dir = BFunc.format_dir_path(alias_dir)
 
 
 
@@ -67,7 +69,7 @@ def generate_alias_name(filepath: str) -> str:
     """
 
     #   1. Generating the alias name's template
-    alias_name = '{date}-{name}-alias'
+    alias_name = '{date}-{name}' # + '-alias'
 
     #   2. Processing the filepath
     dirpath, filename = BFunc.split_filepath(filepath)
@@ -112,7 +114,7 @@ def remove_aliases(filepath: str, *tags: str) -> list:
 
             #   2.1.1. Generating the alias' path
             tag_path = tags_dictionary[tag]
-            alias_path = tag_path + alias_name
+            alias_path = alias_dir + tag_path + alias_name
 
             #   2.1.2. Deleting the alias file and updating the flag
             try:
@@ -128,7 +130,7 @@ def remove_aliases(filepath: str, *tags: str) -> list:
 
             if tag_path:
                 #   2.1.1. Generating the alias' path
-                alias_path = tag_path + alias_name
+                alias_path = alias_dir + tag_path + alias_name
 
                 #   2.1.2. Deleting the alias file and updating the flag
                 try:
@@ -168,7 +170,7 @@ def make_aliases(filepath: str, *tags: str) -> list:
 
             #   2.1.1. Generating the alias' path
             tag_path = tags_dictionary[tag]
-            alias_path = tag_path + alias_name
+            alias_path = alias_dir + tag_path + alias_name
 
             #   2.1.2. Making the alias file and updating the flag
             applescript.make_alias(filepath, alias_path)
@@ -181,7 +183,7 @@ def make_aliases(filepath: str, *tags: str) -> list:
 
             if tag_path:
                 #   2.1.1. Generating the alias' path
-                alias_path = tag_path + alias_name
+                alias_path = alias_dir + tag_path + alias_name
 
                 #   2.1.2. Making the alias file and updating the flag
                 applescript.make_alias(filepath, alias_path)
