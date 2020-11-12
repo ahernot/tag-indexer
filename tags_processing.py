@@ -76,7 +76,7 @@ def generate_alias_name(filepath: str) -> str:
     name, extension = BFunc.split_filename(filename)
 
     #   3. Getting the formatted creation date string (will look at file creation date only)
-    date = BFunc.get_date_formatted(filepath)
+    date = BFunc.get_birthtime_formatted(filepath)
 
     #   4. Generating the formatting dictionary
     format_dict = {
@@ -88,6 +88,7 @@ def generate_alias_name(filepath: str) -> str:
     alias_name = alias_name.format(**format_dict)
 
     return alias_name
+
 
 
 
@@ -104,6 +105,7 @@ def remove_aliases(filepath: str, *tags: str) -> list:
 
     #   1. Generating the name of the alias file
     alias_name = generate_alias_name(filepath)
+
 
     #   2. Processing the specified tags to alias the file for
     for tag in tags:
@@ -123,27 +125,31 @@ def remove_aliases(filepath: str, *tags: str) -> list:
             except FileNotFoundError:
                 pass
 
+
         #   2.2. Looking for format-specific matches with the user-specified special tags (if no exact matches found)
         else:
 
             tag_path = special_tags_match(tag)
 
             if tag_path:
-                #   2.1.1. Generating the alias' path
+                #   2.2.1. Generating the alias' path
                 alias_path = alias_dir + tag_path + alias_name
 
-                #   2.1.2. Deleting the alias file and updating the flag
+                #   2.2.2. Deleting the alias file and updating the flag
                 try:
                     os.remove(alias_path)
                     is_processed = True
                 except FileNotFoundError:
                     pass
 
+
         #   2.3. Logging unprocessed (unrecognised) tags
         if not is_processed:
             unprocessed_tags_list.append(tag)
 
+
     return unprocessed_tags_list
+
 
 
 
@@ -161,6 +167,7 @@ def make_aliases(filepath: str, *tags: str) -> list:
     #   1. Generating the name of the alias file
     alias_name = generate_alias_name(filepath)
 
+
     #   2. Processing the specified tags to alias the file for
     for tag in tags:
         is_processed = False
@@ -172,9 +179,14 @@ def make_aliases(filepath: str, *tags: str) -> list:
             tag_path = tags_dictionary[tag]
             alias_path = alias_dir + tag_path + alias_name
 
-            #   2.1.2. Making the alias file and updating the flag
+            #   2.1.2. Skipping the alias-making process if the alias file already exists
+            if os.path.isfile(alias_path):
+                continue
+
+            #   2.1.3. Making the alias file and updating the flag
             applescript.make_alias(filepath, alias_path)
             is_processed = True
+
 
         #   2.2. Looking for format-specific matches with the user-specified special tags (if no exact matches found)
         else:
@@ -182,16 +194,22 @@ def make_aliases(filepath: str, *tags: str) -> list:
             tag_path = special_tags_match(tag)
 
             if tag_path:
-                #   2.1.1. Generating the alias' path
+                #   2.2.1. Generating the alias' path
                 alias_path = alias_dir + tag_path + alias_name
 
-                #   2.1.2. Making the alias file and updating the flag
+                #   2.2.2. Skipping the alias-making process if the alias file already exists
+                if os.path.isfile(alias_path):
+                    continue
+
+                #   2.2.3. Making the alias file and updating the flag
                 applescript.make_alias(filepath, alias_path)
                 is_processed = True
+
 
         #   2.3. Logging unprocessed (unrecognised) tags
         if not is_processed:
             unprocessed_tags_list.append(tag)
+
 
     return unprocessed_tags_list
 
