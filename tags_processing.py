@@ -230,5 +230,4 @@ def special_tags_match(file_tag: str) -> str:
 
         break
 
-
     return tag_path
