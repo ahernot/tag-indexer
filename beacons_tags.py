@@ -52,8 +52,12 @@ def read_beacon(dirpath: str) -> dict:
         #   4.3. Unpacking
         childpath, child_tags = line_split
 
-        #   4.4. Writing to the output dictionary
-        beacon_dict[childpath] = child_tags.split(_tsep_)
+        #   4.4. Generating the tags list (empty string lists become empty lists)
+        tags_list = child_tags.split(_tsep_)
+        if tags_list == ['']: tags_list = list()
+
+        #   4.5. Writing to the output dictionary
+        beacon_dict[childpath] = tags_list
 
     return beacon_dict
 
