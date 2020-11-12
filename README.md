@@ -6,11 +6,9 @@ This is a macOS platform-specific program designed to permanently alias (using t
 <br><br>
 ## To do
 * Unify the docstrings and file formatting (module imports, …)
+* Clean up the `preferences.py` file
 * Check that the tags beacons work correctly
-* Add tag-specific processing (will only create aliases for new tags)
-* Add alias deletion according to missing files from the beacons (if no beacon, delete all and recreate all)
-* Program tag folder processing (with the `%`, etc.)
-* Add live time estimates, to be integrated in `indexing_functions.py`
+* v1.1: Add live time estimates, to be integrated in `indexing_functions.py`
 * v2: Add a `case_sensitivity` setting in `preferences.py`
 * v2: Comply with sorting system hierarchies for reading actual file creation time
 

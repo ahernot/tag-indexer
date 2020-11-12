@@ -1,4 +1,9 @@
+"""
+This file manages basic functions for the program.
 
+To do:
+* diff_list(): implement a case_sensitive: bool = True with a inlist() bool function which can be case-insensitive for the 'if item_1 not in list_2' part
+"""
 #   IMPORTING THIRD-PARTY LIBRARIES
 import os
 import datetime
@@ -92,7 +97,7 @@ def get_date_formatted(filepath: str) -> str:
 
 
 
-# implement a case_sensitive: bool = True with a inlist() bool function which can be case-insensitive for the 'if item_1 not in list_2' part
+#
 def diff_list(list_1: list, list_2: list) -> (list, list):
 
     list_removed = [item_1 for item_1 in list_1 if item_1 not in list_2]

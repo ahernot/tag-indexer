@@ -1,6 +1,9 @@
 """
 This file manages running through the file hierarchy and analysing accordingly.
 FROM https://superuser.com/questions/22460/how-do-i-get-the-size-of-a-linux-or-mac-os-x-directory-from-the-command-line
+
+To do:
+* Process unprocessed tags in process_dir_dict_beacons()?
 """
 
 #   IMPORTING THIRD-PARTY LIBRARIES
