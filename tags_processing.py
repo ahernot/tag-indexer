@@ -83,20 +83,19 @@ def generate_alias_name(filepath: str) -> str:
     }
 
     #   5. Formatting the alias name
-    alias_name.format(**format_dict)
+    alias_name = alias_name.format(**format_dict)
 
     return alias_name
 
 
 
-
 def remove_aliases(filepath: str, *tags: str) -> list:
     """
-        This function deletes alias files of a parent file according to specific tags.
-        :param filepath: The path of the original file
-        :param tags: The tags to un-alias the file for
-        :return: The list of unprocessed tags
-        """
+    This function deletes alias files of a parent file according to specific tags.
+    :param filepath: The path of the original file
+    :param tags: The tags to un-alias the file for
+    :return: The list of unprocessed tags
+    """
 
     #   0. Generating a list of unprocessed tags
     unprocessed_tags_list = list()

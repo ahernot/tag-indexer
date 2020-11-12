@@ -87,5 +87,5 @@ def split_filename(filename: str) -> (str, str):
 
 def get_date_formatted(filepath: str) -> str:
     birthtime = os.stat(filepath).st_birthtime
-    birthtime_formatted = birthtime.strftime('%Y%m%d-%H%M%S')
+    birthtime_formatted = datetime.datetime.fromtimestamp(birthtime).strftime('%Y%m%d-%H%M%S')
     return birthtime_formatted
