@@ -1,4 +1,4 @@
-# tag-indexer v0.1
+# tag-indexer v0.9
 
 This is a macOS platform-specific program designed to permanently alias (using the Unix aliasing method) files according to their tags.
 
