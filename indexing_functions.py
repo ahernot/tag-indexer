@@ -32,7 +32,7 @@ def get_dir_contents(parent_dirpath: str):
 
 
 
-def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, skip_unmodified_tags: bool = True):
+def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
     """
     Recursive function to process a directory
     :param dir_path: The path of the directory to analyse
@@ -96,44 +96,46 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, 
                 if SBeacons.matches_beacon(beacon_sizes_dict, filepath, filesize_bytes):
                     continue
 
+
             #   5.2. Reading the file's tags
             tags_list = FFunc.get_tags(filepath)
-            # these are the tags to process
 
-            #  DO TAGS_ADDED_LIST, TAGS_DELETED_LIST
-            #  IF WHOLE FILE ADDED, PROCESS ALL AS NORMAL
+            #   5.3. Reading the beacon's stored tags for the file
+            beacon_tags_list = list()
+            try:
+                beacon_tags_list = beacon_tags_dict[filepath]
+            except KeyError:
+                pass
 
-            #   5.3. Optional skipping of unmodified tags
-            if skip_unmodified_tags:
+            #   5.4. Calculating the difference with the values stored in the beacon
+            tags_added_list, tags_removed_list = BFunc.diff_list(beacon_tags_list, tags_list)
 
-                #   5.3.1. Skipping the processing of the file if the beacon's value matches the current ones
-                if TBeacons.matches_beacon(beacon_tags_dict, filepath, tags_list):
-                    continue
+            #   5.5. Skipping the iteration if no tags modified
+            if (not tags_added_list) and (not tags_removed_list):
+                continue
 
-            # run through the tags beacon. if path doesn't exist, remove all aliases
+            unprocessed_tags_list = list()
+            #   5.6.1. Making the aliases corresponding to the added tags
+            unprocessed_tags_list += Tags.make_aliases(filepath, *tags_added_list)
 
-            print('GENERATING ALIASES')
-            # use tags_processing.py
+            #   5.6.2. Deleting the aliases corresponding to the removed tags
+            unprocessed_tags_list += Tags.remove_aliases(filepath, *tags_removed_list)
 
 
-        #   REMOVING ALIASES FOR DELETED/MOVED FILES (PRESENT IN BEACON BUT NOT IN DIRECTORY)
+        #   6. Removing the aliases for deleted files
         removed_dict = TBeacons.get_removed_files(parent_dirpath, beacon_tags_dict)
         for filepath in removed_dict:
             Tags.remove_aliases(filepath, *removed_dict[filepath])
 
 
-
-
-
-        #   6.1. Regenerating the parent directory's sizes beacon file
+        #   7.1. Regenerating the parent directory's sizes beacon file
         if skip_unmodified_dirs:
             SBeacons.write_beacon(parent_dirpath, dirpaths_list)
 
-        #   6.2. Regenerating the parent directory's tags beacon file
+        #   7.2. Regenerating the parent directory's tags beacon file
         TBeacons.write_beacon(parent_dirpath, filepaths_list)
 
-
-
+    #   Initial call of the recursive function
     recur(dir_path)
 
 
@@ -174,6 +176,7 @@ def get_dir_dict(dir_path: str) -> dict:
 
         return dir_dict
 
+    #   Initial call of the recursive function
     main_dir_dict = recur(dir_path)
 
     return main_dir_dict
