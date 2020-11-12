@@ -35,7 +35,7 @@ def get_dir_contents(parent_dirpath: str):
 
 
 
-def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
+def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
     """
     Recursive function to process a directory
     :param dir_path: The path of the directory to analyse
@@ -135,7 +135,7 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
         if skip_unmodified_dirs:
             SBeacons.write_beacon(parent_dirpath, dirpaths_list)
 
-        #   7.2. Regenerating the parent directory's tags beacon file
+        #   7.2. Regenerating the parent directory's tags beacon file ### IDEALLY WOULD ONLY CONTAIN PROCESSED TAGS?
         TBeacons.write_beacon(parent_dirpath, filepaths_list)
 
     #   Initial call of the recursive function
