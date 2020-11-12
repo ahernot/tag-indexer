@@ -12,7 +12,7 @@ CAREFUL: '%' MUST BE AT THE END OF THE TAG NAME (LAST CHARACTER)
 """
 
 #   IMPORTING THIRD-PARTY LIBRARIES
-# -
+import os
 
 #   IMPORTING PROJECT FILES
 import applescript
@@ -90,14 +90,65 @@ def generate_alias_name(filepath: str) -> str:
 
 
 
-def remove_aliases(filepath: str, *tags: str):
-    pass
+def remove_aliases(filepath: str, *tags: str) -> list:
+    """
+        This function deletes alias files of a parent file according to specific tags.
+        :param filepath: The path of the original file
+        :param tags: The tags to un-alias the file for
+        :return: The list of unprocessed tags
+        """
+
+    #   0. Generating a list of unprocessed tags
+    unprocessed_tags_list = list()
+
+    #   1. Generating the name of the alias file
+    alias_name = generate_alias_name(filepath)
+
+    #   2. Processing the specified tags to alias the file for
+    for tag in tags:
+        is_processed = False
+
+        #   2.1. Looking for exact matches with the user-specified tags
+        if tag in tags_dictionary:
+
+            #   2.1.1. Generating the alias' path
+            tag_path = tags_dictionary[tag]
+            alias_path = tag_path + alias_name
+
+            #   2.1.2. Deleting the alias file and updating the flag
+            try:
+                os.remove(alias_path)
+                is_processed = True
+            except FileNotFoundError:
+                pass
+
+        #   2.2. Looking for format-specific matches with the user-specified special tags (if no exact matches found)
+        else:
+
+            tag_path = special_tags_match(tag)
+
+            if tag_path:
+                #   2.1.1. Generating the alias' path
+                alias_path = tag_path + alias_name
+
+                #   2.1.2. Deleting the alias file and updating the flag
+                try:
+                    os.remove(alias_path)
+                    is_processed = True
+                except FileNotFoundError:
+                    pass
+
+        #   2.3. Logging unprocessed (unrecognised) tags
+        if not is_processed:
+            unprocessed_tags_list.append(tag)
+
+    return unprocessed_tags_list
 
 
 
 def make_aliases(filepath: str, *tags: str) -> list:
     """
-    This function creates alias files of files according to specific tags.
+    This function creates alias files of a parent file according to specific tags.
     :param filepath: The path of the original file
     :param tags: The tags to alias the file for
     :return: The list of unprocessed tags
