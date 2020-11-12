@@ -1,3 +1,6 @@
+"""
+This files manages importing the program's preferences from the preferences.txt file.
+"""
 
 #   IMPORTING THIRD-PARTY LIBRARIES
 import os
