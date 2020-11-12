@@ -95,18 +95,6 @@ def write_beacon(dirpath: str, children_paths: list, filename: str = beacon_name
 
 
 
-def matches_beacon(beacon_dict: dict, dirpath_key: str, tags_list: list) -> bool:
-
-    try:
-        beacon_size = beacon_dict[dirpath_key]
-        return beacon_size == tags_list
-
-    except KeyError:
-        return False
-
-
-
-
 def get_removed_files(children_paths: list, beacon_dict: dict) -> dict:
     """
     This function returns all the keys which are present in the beacon file but not in the provided list of files.
