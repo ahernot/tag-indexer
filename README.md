@@ -7,17 +7,17 @@ This is a macOS platform-specific program designed to permanently alias (using t
 ## To do
 * Unify the docstrings and file formatting (module imports, …)
 * Clean up the `preferences.py` file
-* Only save processed tags in the .pytags_tags beacon
-* Regenerate aliases when the beacon is correct but the alias file has been deleted
 * v1.1: Add live time estimates, to be integrated in `indexing_functions.py`
 * v1.1: Add an actions log (useful?)
 * v2: Add a `case_sensitivity` setting in `preferences.py`
+* v2: Only save processed tags (not in `unprocessed_tags_list`) to the `.pytags_tags` beacon
 * v2: Comply with sorting system hierarchies for reading actual file creation time
 
 
 <br><br>
 ## Changelog
-* Nothing to show
+* v0.9.0: Fully functional pre-release
+* v0.9.1: Added alias regeneration, improved file processing (skipping hidden files)
 
 
 <br><br>
