@@ -52,7 +52,7 @@ def read() -> dict:
             #   3.4.1. Making sure that a path separator is present at the end
             parent_folder = BFunc.format_dir_path(line_raw)
 
-        #   3.5. (no tolerance for mismanaged indents)
+        #   3.5. Reading the child folders' names (no tolerance for mismanaged indents)
         elif line_indent == line_indent_child:
 
             #   3.5.0. Skipping the rest of the iteration if the parent folder is the default one
