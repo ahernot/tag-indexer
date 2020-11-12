@@ -89,3 +89,15 @@ def get_date_formatted(filepath: str) -> str:
     birthtime = os.stat(filepath).st_birthtime
     birthtime_formatted = datetime.datetime.fromtimestamp(birthtime).strftime('%Y%m%d-%H%M%S')
     return birthtime_formatted
+
+
+
+# implement a case_sensitive: bool = True with a inlist() bool function which can be case-insensitive for the 'if item_1 not in list_2' part
+def diff_list(list_1: list, list_2: list) -> (list, list):
+
+    list_removed = [item_1 for item_1 in list_1 if item_1 not in list_2]
+    list_added   = [item_2 for item_2 in list_2 if item_2 not in list_1]
+
+    return list_removed, list_added
+
+
