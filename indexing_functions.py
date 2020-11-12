@@ -1,14 +1,10 @@
 """
 This file manages running through the file hierarchy and analysing accordingly.
 FROM https://superuser.com/questions/22460/how-do-i-get-the-size-of-a-linux-or-mac-os-x-directory-from-the-command-line
-
-To do:
-* Process unprocessed tags in process_dir_dict_beacons()?
 """
 
 #   IMPORTING THIRD-PARTY LIBRARIES
 import os
-import subprocess
 
 #   IMPORTING PROJECT FILES
 import preferences as Pref
@@ -20,6 +16,7 @@ import tags_processing as Tags
 
 #   DEFINING FILE-WIDE VARIABLES
 _files_ = Pref._files_
+
 
 
 
@@ -35,11 +32,13 @@ def get_dir_contents(parent_dirpath: str):
 
 
 
-def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
+
+def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False, regenerate_aliases: bool = False):
     """
     Recursive function to process a directory
     :param dir_path: The path of the directory to analyse
     :param skip_unmodified_dirs: Skip directories whose total size in bytes hasn't changed since the last run of the program
+    :param regenerate_aliases: Regenerate aliases regardless of their existence (regenerate user-deleted alias files)
     :return: The directory's hierarchy dictionary
     """
 
@@ -50,9 +49,9 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
 
         #   2.1. Getting the contents of the parent directory
         dirnames_list, filenames_list = get_dir_contents(parent_dirpath)
-        #   2.2. Adding the parent directory's path to get lists of paths
+        #   2.2. Adding the parent directory's path to get lists of paths (and skipping hidden files)
         dirpaths_list = [parent_dirpath + dirname for dirname in dirnames_list]
-        filepaths_list = [parent_dirpath + filename for filename in filenames_list]
+        filepaths_list = [parent_dirpath + filename for filename in filenames_list if not(BFunc.ishidden(filename))]
 
 
 
@@ -71,11 +70,12 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
             #   4.1. Getting the child directory's path
             dirpath = parent_dirpath + dirname
 
+
             #   4.2. Optional skipping of seemingly unmodified directories
             if skip_unmodified_dirs:
 
                 #   4.2.1. Calculating the size of the child directory
-                dirsize_bytes = size_bytes(dirpath)
+                dirsize_bytes = BFunc.size_bytes(dirpath)
 
                 #   4.2.2. Skipping the processing of the branch if the beacon's value match the current ones
                 if SBeacons.matches_beacon(beacon_sizes_dict, dirpath, dirsize_bytes):
@@ -89,11 +89,12 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
         #   5. Processing the files
         for filepath in filepaths_list:
 
+
             #   5.1. Optional skipping of seemingly unmodified files
             if skip_unmodified_dirs:
 
                 #   5.1.1. Calculating the size of the child directory
-                filesize_bytes = size_bytes(filepath)
+                filesize_bytes = BFunc.size_bytes(filepath)
 
                 #   5.1.2. Skipping the processing of the branch if the beacon's value match the current ones
                 if SBeacons.matches_beacon(beacon_sizes_dict, filepath, filesize_bytes):
@@ -110,13 +111,20 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
             except KeyError:
                 pass
 
-            #   5.4. Calculating the difference with the values stored in the beacon
-            tags_added_list, tags_removed_list = BFunc.diff_list(beacon_tags_list, tags_list)
+
+            #   5.4.1. Calculating the difference with the values stored in the beacon
+            tags_removed_list, tags_added_list = BFunc.diff_list(beacon_tags_list, tags_list)
+            #   5.4.2. Adding all tags in the list of tags to generate aliases for
+            if regenerate_aliases:
+                tags_added_list = tags_list.copy()
+
 
             #   5.5. Skipping the iteration if no tags modified
             if (not tags_added_list) and (not tags_removed_list):
                 continue
 
+
+            #   5.6. Processing the tags to make and delete alias files
             unprocessed_tags_list = list()
             #   5.6.1. Making the aliases corresponding to the added tags
             unprocessed_tags_list += Tags.make_aliases(filepath, *tags_added_list)
@@ -125,8 +133,9 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
             unprocessed_tags_list += Tags.remove_aliases(filepath, *tags_removed_list)
 
 
+
         #   6. Removing the aliases for deleted files
-        removed_dict = TBeacons.get_removed_files(parent_dirpath, beacon_tags_dict)
+        removed_dict = TBeacons.get_removed_files(filepaths_list, beacon_tags_dict)
         for filepath in removed_dict:
             Tags.remove_aliases(filepath, *removed_dict[filepath])
 
@@ -135,7 +144,7 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
         if skip_unmodified_dirs:
             SBeacons.write_beacon(parent_dirpath, dirpaths_list)
 
-        #   7.2. Regenerating the parent directory's tags beacon file ### IDEALLY WOULD ONLY CONTAIN PROCESSED TAGS?
+        #   7.2. Regenerating the parent directory's tags beacon file
         TBeacons.write_beacon(parent_dirpath, filepaths_list)
 
     #   Initial call of the recursive function
@@ -144,9 +153,6 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False):
 
 
 
-
-
-## LEGACY FUNCTION
 def get_dir_dict(dir_path: str) -> dict:
     """
     Recursive function to get all the contents of a directory.
@@ -183,15 +189,3 @@ def get_dir_dict(dir_path: str) -> dict:
     main_dir_dict = recur(dir_path)
 
     return main_dir_dict
-
-
-
-
-
-def size_bytes(path: str) -> int:
-    cmd = ['find',
-           path,
-           '-type f -exec ls -l {} \; | awk \'{sum += $5} END {print sum}\''
-           ]
-    output_bytes = subprocess.check_output([' '.join(cmd)], shell=True)
-    return int( output_bytes.decode('utf-8')[:-1] )
