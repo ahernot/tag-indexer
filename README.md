@@ -12,6 +12,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
 * Program tag folder processing (with the `%`, etc.)
 * Add live time estimates, to be integrated in `indexing_functions.py`
 * v2: Add a `case_sensitivity` setting in `preferences.py`
+* v2: Comply with sorting system hierarchies for reading actual file creation time
 
 
 <br><br>
