@@ -10,9 +10,9 @@ main_path = os.path.realpath(__file__).replace('preferences.py', '')
 
 
 
-
-
-dir_to_process = ''
+# dir_to_process = ''
+dir_to_process = '/Users/Anatole/Documents/TEST-directory-branching' # /'
+alias_dir = '/Users/Anatole/Documents/ALIAS'
 
 
 ETA_calculation = True
