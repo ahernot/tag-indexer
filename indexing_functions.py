@@ -100,6 +100,9 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, 
             tags_list = FFunc.get_tags(filepath)
             # these are the tags to process
 
+            #  DO TAGS_ADDED_LIST, TAGS_DELETED_LIST
+            #  IF WHOLE FILE ADDED, PROCESS ALL AS NORMAL
+
             #   5.3. Optional skipping of unmodified tags
             if skip_unmodified_tags:
 
@@ -113,7 +116,7 @@ def process_dir_dict_beacons(dir_path: str, skip_unmodified_dirs: bool = False, 
             # use tags_processing.py
 
 
-        #   REMOVING ALIASES FOR DELETED/MOVED FILES
+        #   REMOVING ALIASES FOR DELETED/MOVED FILES (PRESENT IN BEACON BUT NOT IN DIRECTORY)
         removed_dict = TBeacons.get_removed_files(parent_dirpath, beacon_tags_dict)
         for filepath in removed_dict:
             Tags.remove_aliases(filepath, *removed_dict[filepath])
