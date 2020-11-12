@@ -3,7 +3,6 @@ This file manages interpreting the tags database.
 
 TO ADD:
 * case-insensitivity when processing tags
-* alias name includes file DATE (either according to folders, metadata, file metadata, or custom hidden metadata file
 * add a tag_placeholder value; replace all the [-1] and [:-1] with [-len], [:-len]
 * in special_tags_match: ADD EXCEPTIONS WHEN SPLICING STRINGS AND OVERRUNNING THE TOTAL LENGTH (IndexError)
 * WILL NEED AN OS.MAKEDIRS AT SOME POINT
