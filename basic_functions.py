@@ -1,6 +1,7 @@
 
 #   IMPORTING THIRD-PARTY LIBRARIES
-# -
+import os
+import datetime
 
 #   IMPORTING PROJECT FILES
 import preferences as Pref
@@ -62,3 +63,29 @@ def format_dir_path(dir_path: str):
     if dir_path[-1] != _psep_:
         dir_path += _psep_
     return dir_path
+
+
+def split_filepath(filepath: str) -> (str, str):
+    _psep_ = Pref._psep_
+    filepath_split = filepath.split(_psep_)
+
+    dirpath = _psep_.join(filepath_split[:-1])
+    filename = filepath_split[-1]
+
+    return dirpath, filename
+
+
+def split_filename(filename: str) -> (str, str):
+    _esep_ = Pref._esep_
+    filename_split = filename.split(_esep_)
+
+    name = _esep_.join(filename_split[:-1])
+    extension = filename_split[-1]
+
+    return name, extension
+
+
+def get_date_formatted(filepath: str) -> str:
+    birthtime = os.stat(filepath).st_birthtime
+    birthtime_formatted = birthtime.strftime('%Y%m%d-%H%M%S')
+    return birthtime_formatted
