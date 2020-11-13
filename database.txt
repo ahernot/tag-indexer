@@ -2,10 +2,8 @@ Syntax
 	tag_name	sorting_folder_name
 
 Ratings
-	Awesome Picture	Awesome Photos
 	Awesome Photo	Awesome Photos
 	Awesome Video	Awesome Videos
-	Great Picture	Great Photos
 	Great Photo	Great Photos
 	Great Video	Great Videos
 	Great Memories	Great Memories
@@ -18,34 +16,10 @@ Scenes
 
 Types
 	type%	%
-	typeTimelapse	Timelapses
-	typePanorama	Panoramas
-	360 Photo	360 Photos (old – replace with type360)
-	type360	360 Photos
-	Selfie	Selfies (old – replace with typeSelfie)
-	typeSelfie	Selfies
-	Drone Shot	Drone Shots (old – replace with typeDroneShot)
-	typeDroneShot	Drone Shots
-	typeRevealVideo	Reveal Videos
-	typeBackwardsMotionVideo	Backwards-Motion Videos
-	typeForwardsMotionVideo	Forwards-Motion Videos
-	Portrait	Portraits (old – replace with typePortrait)
-	typePortrait	Portraits
-	typeSideMotionVideo	Side-Motion Videos
-	typeStillVideo	Still Videos
-	typeTelephoto	Telephoto Shots
 
 
 Cameras
 	camera%	%
-	cameraMavicAir	DJI Mavic Air
-	cameraIxus155	Canon IXUS 155
-	cameraEOS5D2	Canon EOS 5D Mark II
-	cameraIpodTouch	Apple iPod Touch
-	cameraIphone8	Apple iPhone 8
-	cameraApeman80	Apeman A80
-	cameraMacBookAir2012	Apple MacBook Air 2012
-	cameraEOSM50	Canon EOS M50
 
 
 People
