@@ -96,6 +96,13 @@ def write_beacon(dirpath: str, children_paths: list, filename: str = beacon_name
 
 
 def matches_beacon(beacon_dict: dict, dirpath: str, dirsize_bytes: int) -> bool:
+    """
+    This function checks whether the provided directory size (in bytes) matches the one found in the beacon's dictionary, if it exists.
+    :param beacon_dict: The beacon's dictionary
+    :param dirpath: The path of the directory to check for
+    :param dirsize_bytes: The calculated size of the directory
+    :return: The boolean value of the test
+    """
 
     try:
         beacon_size = beacon_dict[dirpath]
