@@ -20,7 +20,12 @@ _files_ = Pref._files_
 
 
 
-def get_dir_contents(parent_dirpath: str):
+def get_dir_contents(parent_dirpath: str) -> (list, list):
+    """
+    This function gets the contents of a directory (dirnames and filenames).
+    :param parent_dirpath: The directory to get the contents from
+    :return: The list of dirnames and the list of filenames, of subdirectories and files contained in the directory, in this order
+    """
     dirnames_list, filenames_list = list(), list()
 
     for (dirpath, dirnames, filenames) in os.walk(parent_dirpath):
