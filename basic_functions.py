@@ -211,3 +211,22 @@ def size_bytes(path: str) -> int:
     output_bytes = subprocess.check_output([' '.join(cmd)], shell=True)
 
     return int( output_bytes.decode('utf-8')[:-1] )
+
+
+
+
+def display_progression(filecount: int, total_filecount: int, display_every: int):
+    """
+    This function display the progression of filecount towards total_filecount in steps of display_every.
+    :param filecount: The progressing file count
+    :param total_filecount: The total file count
+    :param display_every: The steps for displaying the progress
+    :return:
+    """
+
+    if filecount % display_every == 0 or filecount == total_filecount:
+
+        percentage = round(filecount / total_filecount * 100, 1)
+
+        message = f'{percentage}% done'
+        print(message)
