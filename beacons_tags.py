@@ -1,4 +1,6 @@
-
+"""
+This file manages file tags hidden beacon files in directories.
+"""
 
 #   IMPORTING THIRD-PARTY LIBRARIES
 # -
