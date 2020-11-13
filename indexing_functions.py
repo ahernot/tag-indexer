@@ -153,7 +153,7 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False, regen
 
 
 
-def get_dir_dict(dir_path: str) -> dict:
+def get_dir_dict(parent_dirpath: str) -> dict:
     """
     Recursive function to get all the contents of a directory.
     :param dir_path: The path of the directory to analyse
@@ -186,6 +186,24 @@ def get_dir_dict(dir_path: str) -> dict:
         return dir_dict
 
     #   Initial call of the recursive function
-    main_dir_dict = recur(dir_path)
+    main_dir_dict = recur(parent_dirpath)
 
     return main_dir_dict
+
+
+
+
+def get_files_list(dirpath: str) -> list:
+    """
+    This function generates a flat list (one-dimensional array) of all the non-hidden files contained in a directory and its subdirectories.
+    :param dirpath: The directory's path
+    :return: The list of files contained in the directory
+    """
+
+    import itertools
+
+    filelist_deep = [files for _, _, files in os.walk(r'/Users/Anatole/Documents/TEST-directory-branching')]
+    filelist_flat = itertools.chain.from_iterable(filelist_deep)
+    filelist_flat_filtered = [file for file in filelist_flat if (not BFunc.ishidden(file))]
+
+    return filelist_flat_filtered
