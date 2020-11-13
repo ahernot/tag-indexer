@@ -1,3 +1,7 @@
+"""
+This file manages reading the user-provided database of tags to process.
+"""
+
 #   IMPORTING THIRD-PARTY LIBRARIES
 # -
 
