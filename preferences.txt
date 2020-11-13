@@ -1,1 +1,7 @@
+dir_to_process	/Users/Anatole/Documents/TEST-directory-branching
+alias_dir	/Users/Anatole/Documents/ALIAS
 
+tag_placeholder	%
+database_name	database.txt
+beacon_tags_name	.pytags_tags
+beacon_sizes_name	.pytags_sizes
