@@ -21,9 +21,8 @@ This is a macOS platform-specific program designed to permanently alias (using t
 <br><br>
 ## Working principle
 * Retrieving tags to process from the tags database
-* Running through the directories to decipher changes (operating principle: dir size change $\Leftrightarrow$ dir change, yet not always true)
-    * Or maybe can use dir edit date, if reliable? More tests needed
-* Change will be compared with the contents of the '.pytags' hidden file
+* Running through the directories to decipher changes
+* Change will be compared with the contents of the '.pytags_tags' hidden file
 * Only files' tags will be accounted for by the program
 
 
