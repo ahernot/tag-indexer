@@ -33,16 +33,25 @@ def get_dir_contents(parent_dirpath: str):
 
 
 
-def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False, regenerate_aliases: bool = False):
+def process_dir_beacons(dirpath: str, skip_unmodified_dirs: bool = False, regenerate_aliases: bool = False, display_progression: int = 100):
     """
     Recursive function to process a directory
     :param dir_path: The path of the directory to analyse
     :param skip_unmodified_dirs: Skip directories whose total size in bytes hasn't changed since the last run of the program
     :param regenerate_aliases: Regenerate aliases regardless of their existence (regenerate user-deleted alias files)
+    :param display_progression: The rough number of progression steps to display.
     :return: The directory's hierarchy dictionary
     """
 
-    def recur(parent_dirpath: str):
+    #   0. Getting the number of files to process
+    if display_progression:
+        import math
+        total_filecount = len(get_files_list(dirpath))
+        display_every = math.ceil(total_filecount / display_progression)
+        print(f'{total_filecount} files to process\n')
+
+
+    def recur(parent_dirpath: str, filecount: int = 0):
 
         #   1. Formatting the parent directory's path (making sure that a path separator is present at the end)
         parent_dirpath = BFunc.format_dir_path(parent_dirpath)
@@ -82,12 +91,17 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False, regen
                     continue
 
             #   4.3. Recursive call of the function to get the child directory's contents dictionary
-            recur(dirpath)
+            filecount = recur(dirpath, filecount)
 
 
 
         #   5. Processing the files
         for filepath in filepaths_list:
+
+            filecount += 1
+            #   5.0. Displaying progression (optional)
+            if display_progression:
+                BFunc.display_progression(filecount, total_filecount, display_every)
 
 
             #   5.1. Optional skipping of seemingly unmodified files
@@ -147,13 +161,18 @@ def process_dir_beacons(dir_path: str, skip_unmodified_dirs: bool = False, regen
         #   7.2. Regenerating the parent directory's tags beacon file
         TBeacons.write_beacon(parent_dirpath, filepaths_list)
 
+
+        return filecount
+
+
+
     #   Initial call of the recursive function
-    recur(dir_path)
+    recur(dirpath)
 
 
 
 
-def get_dir_dict(parent_dirpath: str) -> dict:
+def get_dir_dict(dirpath: str) -> dict:
     """
     Recursive function to get all the contents of a directory.
     :param dir_path: The path of the directory to analyse
@@ -186,7 +205,7 @@ def get_dir_dict(parent_dirpath: str) -> dict:
         return dir_dict
 
     #   Initial call of the recursive function
-    main_dir_dict = recur(parent_dirpath)
+    main_dir_dict = recur(dirpath)
 
     return main_dir_dict
 
