@@ -1,12 +1,12 @@
 # tag-indexer v1.0.0
-
 This is a macOS platform-specific program designed to permanently alias (using the Unix aliasing method) files according to their tags.
 
 
 <br><br>
 ## To do
+* v1.0.1: Add instructions of use
 * v1.1: Add an actions log (useful?)
-* v2: Add a `case_sensitivity` setting in `preferences.py`
+* v1.2: Add a `case_sensitivity` setting in `preferences.py`
 * v2: Only save processed tags (not in `unprocessed_tags_list`) to the `.pytags_tags` beacon
 * v2: Comply with sorting system hierarchies for reading actual file creation time and writing it to the alias file's name
 
@@ -15,6 +15,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
 ## Changelog
 * v0.9.0: Fully functional pre-release
 * v0.9.1: Added alias regeneration, improved file processing (skipping hidden files)
+* v1.0.0: Cleaned up `preferences.py`, added docstrings and file documentation, added a live progress tracker
 
 
 <br><br>
