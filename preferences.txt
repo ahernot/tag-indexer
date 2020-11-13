@@ -1,5 +1,5 @@
-dir_to_process	/Users/Anatole/Documents/TEST-directory-branching
-alias_dir	/Users/Anatole/Documents/ALIAS
+dir_to_process	/add-your-directory-here
+alias_dir	/add-your-directory-here/generated-aliases
 
 tag_placeholder	%
 database_name	database.txt
