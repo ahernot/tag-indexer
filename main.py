@@ -28,4 +28,9 @@ import indexer
 
 TEST_PATH = '/Users/anatole/Downloads/_TEST_PYTAGS_'
 file_dict = parser.read_dir (TEST_PATH)
-i = indexer.index_files (file_dict)
+i = indexer.index_files (file_dict, ignore_beacons=False)
+print(i)
+
+
+# TODO:
+# skip hidden files
