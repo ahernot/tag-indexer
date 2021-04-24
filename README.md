@@ -9,6 +9,8 @@ This is a macOS platform-specific program designed to permanently alias (using t
 
 <br><br>
 ## To do
+* v2.0: Add an option to reindex everything and bypass the beacosn
+* v2.0: Add an option to delete all beacons
 * v2.0.1: Add instructions of use
 * Add naming the file according to datetime: add a .pysorter-datetime file which acts as a datetime beacon for the current folder
 * v2.1: Add an actions log (useful?)
