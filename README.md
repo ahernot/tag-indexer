@@ -12,6 +12,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
 * v2.0: Add an option to reindex everything and bypass the beacosn
 * v2.0: Add an option to delete all beacons
 * v2.0.1: Add instructions of use
+* v2.1: hard-store +ALIAS and -ALIAS >> on startup, rundown this task list first to avoid missing tags in case of crash
 * Add naming the file according to datetime: add a .pysorter-datetime file which acts as a datetime beacon for the current folder
 * v2.1: Add an actions log (useful?)
 * v2.2: Add a `case_sensitivity` setting in `preferences.py`
