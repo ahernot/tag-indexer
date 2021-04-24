@@ -1,7 +1,0 @@
-dir_to_process	/add-your-directory-here
-alias_dir	/add-your-directory-here/generated-aliases
-
-tag_placeholder	%
-database_name	database.txt
-beacon_tags_name	.pytags_tags
-beacon_sizes_name	.pytags_sizes
