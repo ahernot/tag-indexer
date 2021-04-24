@@ -1,16 +1,19 @@
-"""
-This files manages importing the program's preferences from the preferences.txt file.
-"""
 
-#   IMPORTING THIRD-PARTY LIBRARIES
 import os
-
-#   IMPORTING PROJECT FILES
-# -
 
 #   DEFINING FILE-WIDE VARIABLES
 main_path = os.path.realpath(__file__).replace('preferences.py', '')
 preferences_path = main_path + 'preferences.txt'
+
+
+
+# BEGIN UPDATED FILE
+BEACON_NAME = '.pytags-beacon'
+
+
+
+
+
 
 _files_ = '_files_'
 
