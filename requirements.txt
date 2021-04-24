@@ -1,0 +1,3 @@
+xattr==0.9.7
+cffi==1.13.1
+pycparser==2.19
