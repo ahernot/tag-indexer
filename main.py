@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 
+import sys
+
 import indexing_functions as IFunc
 
 
-# Add your dirpath here
-DIRPATH = ''
-
-
-import sys
-
-print 'Number of arguments:', len(sys.argv), 'arguments.'
-print 'Argument List:', str(sys.argv)
-
 if __name__ == '__main__':
-
-    # IFunc.process_dir_beacons( DIRPATH )
+    
+    if len(sys.argv) == 2:  # 3:
+        IFunc.process_dir_beacons( sys.argv[1] )  #, sys.argv[2] )
