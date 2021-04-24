@@ -3,29 +3,75 @@
 import json
 import os
 
-# from preferences import *
+from file_analysis import read_tags
+
+
+def diff_lists (list_1: list, list_2: list):
+    # case-sensitive, crude implementation, works very well for small lists
+
+    add = list()
+    remove = list()
+    
+    for item in list_1:
+        if item not in list_2:
+            remove.append (item)
+
+    for item in list_2:
+        if item not in list_1:
+            add.append (item)
+
+    return add, remove
 
 
 def index_files (file_dict: dict):
 
+    tag_add_dict = dict()
+    tag_remove_dict = dict()
+    
+    # Run through beacons (subdirs)
     for beacon_path in file_dict:
         
+        # Read JSON beacon
         if not os.path.exists (beacon_path):
             beacon_dict = dict()
     
         else:
-            # data_dict = {'IMG_2020.JPG': ['tag1'], 'IMG_1934.JPG': ['tag1', 'tag2']}
-            # with open (beacon_path, 'w', encoding='utf-8') as beacon:
-            #     beacon_dict = json.dump (data_dict, beacon, indent=4)
             with open (beacon_path, 'r', encoding='utf-8') as beacon:
                 beacon_dict = json.load (beacon)
         
-
-
-        for filepath in file_dict [beacon_path]:  #TODO: or else file OBJECT
+        # Run through files
+        for file in file_dict [beacon_path]:
             
-            # read tags
-            # match tags with those on beacon, if any
-            # mark added tags for +ALIAS (hard-stored > on startup, rundown this task list first)
-            # mark removed tags for -ALIAS (hard-stored)
-            # update beacon
+            # Read tags saved in beacon
+            try: 
+                saved_tags = beacon_dict [file.name]
+            except KeyError:
+                saved_tags = list()
+            
+            # Read current tags
+            current_tags = read_tags (file.path)  # returns empty list for missing file
+
+            # Compute differences
+            add, remove = diff_lists (saved_tags, current_tags)
+
+            # Queue for processing
+            for tag in add:
+                try:
+                    tag_add_dict [tag] .append (file.path)
+                except KeyError:
+                    tag_add_dict [tag] = [file.path]
+
+            for tag in remove:
+                try:
+                    tag_remove_dict [tag] .append (file.path)
+                except KeyError:
+                    tag_remove_dict [tag] = [file.path]
+            
+            # Update beacon dict
+            beacon_dict [file.name] = current_tags
+
+        # Write beacon                
+        with open (beacon_path, 'w', encoding='utf-8') as beacon:
+            json.dump (beacon_dict, beacon, indent=4)
+
+    return tag_add_dict, tag_remove_dict
