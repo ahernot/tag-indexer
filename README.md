@@ -9,11 +9,12 @@ This is a macOS platform-specific program designed to permanently alias (using t
 
 <br><br>
 ## To do
-* v1.0.1: Add instructions of use
-* v1.1: Add an actions log (useful?)
-* v1.2: Add a `case_sensitivity` setting in `preferences.py`
-* v2: Only save processed tags (not in `unprocessed_tags_list`) to the `.pytags_tags` beacon
-* v2: Comply with sorting system hierarchies for reading actual file creation time and writing it to the alias file's name
+* v2.0.1: Add instructions of use
+* Add naming the file according to datetime: add a .pysorter-datetime file which acts as a datetime beacon for the current folder
+* v2.1: Add an actions log (useful?)
+* v2.2: Add a `case_sensitivity` setting in `preferences.py`
+* v3: Only save processed tags (not in `unprocessed_tags_list`) to the `.pytags_tags` beacon
+* v3: Comply with sorting system hierarchies for reading actual file creation time and writing it to the alias file's name
 
 
 <br><br>
