@@ -1,16 +1,14 @@
 """
-This file manages reading tags from files.
+Read tags from a file
 """
 
-#   IMPORTING THIRD-PARTY LIBRARIES
 import xattr
 import json
 from subprocess import Popen, PIPE
 
-#   IMPORTING PROJECT FILES
 import preferences as Pref
 
-#   DEFINING FILE-WIDE VARIABLES
+# DEFINE FILE-WIDE VARIABLES
 _lsep_ = Pref._lsep_
 
 
@@ -30,7 +28,7 @@ def bplist_to_list(bplist: bytes) -> list:
 
 
 
-def get_tags(filepath: str) -> list:
+def read_tags (filepath: str) -> list:
     """
     This function reads the tags of a file/directory (macOS-specific).
     :param filepath: The path of the file/directory to analyse
@@ -38,12 +36,12 @@ def get_tags(filepath: str) -> list:
     """
 
     try:
-        tagattr = xattr.getxattr(filepath, 'com.apple.metadata:_kMDItemUserTags')
+        tagattr = xattr.getxattr (filepath, 'com.apple.metadata:_kMDItemUserTags')
 
-        tags_list = bplist_to_list(tagattr)
+        tags = bplist_to_list (tagattr)
 
-        tags_list = [tag.split(_lsep_)[0] for tag in tags_list]
-        return tags_list
+        tags = [tag.split(_lsep_)[0] for tag in tags_list]
+        return tags
 
     except:
         return list()
