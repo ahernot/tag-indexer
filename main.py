@@ -19,6 +19,9 @@ import sys
 
 
 ## TESTS
+# file_analysis.py (to rework)
+# parser.py
+# indexer.py
 
 import parser
 import indexer
