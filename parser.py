@@ -27,7 +27,7 @@ def read_dir (dirpath: str):
                     subdirs.append (file.path)
                 
                 else:
-                    file_dict [beacon_path] .append (file.path)  # OR append file (posix.DirEntry) instance altogether?
+                    file_dict [beacon_path] .append (file)  # OR append filepath
 
         # Recursively run for subdirs
         for subdirpath in subdirs:
