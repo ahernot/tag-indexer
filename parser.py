@@ -13,21 +13,21 @@ def read_dir (dirpath: str):
         subdirs = list()
 
         # Generate beacon path (regardless of its existence)
-        beacon_path = os.path.join( dirpath, BEACON_NAME )
+        beacon_path = os.path.join (dirpath, BEACON_NAME)
 
         # Initialise dict entry
         file_dict [beacon_path] = list()
 
         # Parse current dir
-        with os.scandir( dirpath ) as file_dir:
+        with os.scandir (dirpath) as file_dir:
 
             for file in file_dir:
 
                 if file.is_dir():
-                    subdirs.append(file.path)
+                    subdirs.append (file.path)
                 
                 else:
-                    file_dict[beacon_path].append( file.path )  # OR append file (posix.DirEntry) instance altogether?
+                    file_dict [beacon_path] .append (file.path)  # OR append file (posix.DirEntry) instance altogether?
 
         # Recursively run for subdirs
         for subdirpath in subdirs:
