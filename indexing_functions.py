@@ -226,7 +226,7 @@ def get_files_list(dirpath: str) -> list:
 
     import itertools
 
-    filelist_deep = [files for _, _, files in os.walk(r'/Users/Anatole/Documents/TEST-directory-branching')]
+    filelist_deep = [files for _, _, files in os.walk(dirpath)]
     filelist_flat = itertools.chain.from_iterable(filelist_deep)
     filelist_flat_filtered = [file for file in filelist_flat if (not BFunc.ishidden(file))]
 
