@@ -57,15 +57,15 @@ def index_files (file_dict: dict, ignore_beacons = False):
             # Queue for processing
             for tag in add:
                 try:
-                    tag_add_dict [tag] .append (file.path)
+                    tag_add_dict [tag] .append (file)
                 except KeyError:
-                    tag_add_dict [tag] = [file.path]
+                    tag_add_dict [tag] = [file]
 
             for tag in remove:
                 try:
-                    tag_remove_dict [tag] .append (file.path)
+                    tag_remove_dict [tag] .append (file)
                 except KeyError:
-                    tag_remove_dict [tag] = [file.path]
+                    tag_remove_dict [tag] = [file]
             
             # Update beacon dict
             beacon_dict [file.name] = current_tags
