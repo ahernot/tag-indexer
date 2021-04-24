@@ -40,7 +40,7 @@ def read_tags (filepath: str) -> list:
 
         tags = bplist_to_list (tagattr)
 
-        tags = [tag.split(_lsep_)[0] for tag in tags_list]
+        tags = [tag.split('\n')[0] for tag in tags]
         return tags
 
     except:
