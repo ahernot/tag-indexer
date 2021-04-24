@@ -23,7 +23,7 @@ def diff_lists (list_1: list, list_2: list):
     return add, remove
 
 
-def index_files (file_dict: dict):
+def index_files (file_dict: dict, ignore_beacons = False):
 
     tag_add_dict = dict()
     tag_remove_dict = dict()
@@ -32,7 +32,7 @@ def index_files (file_dict: dict):
     for beacon_path in file_dict:
         
         # Read JSON beacon
-        if not os.path.exists (beacon_path):
+        if not os.path.exists (beacon_path) or ignore_beacons:
             beacon_dict = dict()
     
         else:
