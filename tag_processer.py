@@ -5,6 +5,14 @@ import os
 from alias_builder import make_alias
 
 
+"""
+goals for this file:
+* generate alias folder (processed tag name)
+* generate alias name (datetime, …)
+* make alias file
+* destroy alias file
+"""
+
 
 def process_tag (tag: str):
     # to do
