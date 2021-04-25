@@ -12,6 +12,9 @@ goals for this file:
 * generate alias name (datetime, …)
 * make alias file
 * destroy alias file
+
+to do:
+add update big aliases database >> can build file hyperlinks too
 """
 
 
@@ -111,6 +114,7 @@ def add_aliases (tag_add_dict: dict):
             
             # Generate alias filename
             alias_name = file.name
+            ### TO COMPLETE
             
             # Make alias
             make_alias (file.path, alias_dirpath, alias_name)
