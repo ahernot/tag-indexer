@@ -9,7 +9,7 @@ This is a macOS platform-specific program designed to permanently alias (using t
 
 <br><br>
 ## To do
-* v2.0: Add an option to reindex everything and bypass the beacosn
+* v2.0: Add docstrings
 * v2.0: Add an option to delete all beacons
 * v2.0.1: Add instructions of use
 * v2.1: hard-store +ALIAS and -ALIAS >> on startup, rundown this task list first to avoid missing tags in case of crash
