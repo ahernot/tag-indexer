@@ -9,6 +9,8 @@ from functions import dictlen
 
 def process_dir (dirpath: str, output_dirpath: str, ignore_beacons = False):
 
+    LOG = str()
+
     # Parse directory
     file_dict = read_dir (dirpath)
 
@@ -17,10 +19,11 @@ def process_dir (dirpath: str, output_dirpath: str, ignore_beacons = False):
 
     print (f'Adding {dictlen(tag_add_dict)} aliases.\nRemoving {dictlen(tag_remove_dict)} aliases.')
 
-    # Make aliases
+    # Add aliases
     add_aliases (output_dirpath, tag_add_dict)
 
-    # Destroy aliases
+    # Remove aliases
+    remove_aliases (output_dirpath, tag_remove_dict)
 
 
 
