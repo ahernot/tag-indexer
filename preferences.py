@@ -16,20 +16,24 @@ TAG_NOCAT = 'Others'
 # placeholder can only be the last element of the string, and only in subdir
 # for tags with placeholder: [dir, subdir, format-instructions]
 TAGS_DICT = {
+    # Specific tags
     'Awesome Photo': ['Ratings', 'Awesome Photos'],
+    'Awesome Picture': ['Ratings', 'Awesome Photos'],  # legacy
     'Awesome Video': ['Ratings', 'Awesome Videos'],
     'Great Photo': ['Ratings', 'Great Photos'],
+    'Great Picture': ['Ratings', 'Great Photos'],  # legacy
     'Great Video': ['Ratings', 'Great Videos'],
     'Great Memories': ['Ratings', 'Great Memories'],
     'Funny Picture': ['Ratings', 'Funny Picture'],
 
+    # Placeholder tags
     f'type {RTAG}': ['Types', RTAG, None],
     f'camera {RTAG}': ['Cameras', RTAG, None],
     f'people {RTAG}': ['People', RTAG, None],  # people in the photo/video
     f'subject {RTAG}': ['Subjects', RTAG, None],  # photo/video subject (not a person)
     f'shot by {RTAG}': ['Photographers', RTAG, None],
 
-    # Legacy types
+    # Legacy placeholder tags
     f'type{RTAG}': ['Types', RTAG, 'space-before-uppercase'],
     f'camera{RTAG}': ['Cameras', RTAG, 'space-before-uppercase'],
     f'people{RTAG}': ['People', RTAG, 'space-before-uppercase'],
