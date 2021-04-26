@@ -1,6 +1,4 @@
-"""
-Read tags from a file
-"""
+#!/usr/bin/env python3
 
 import xattr
 import json
