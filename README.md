@@ -21,13 +21,6 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 
 
 <br><br>
-## Changelog
-* v0.9.0: Fully functional pre-release
-* v0.9.1: Added alias regeneration, improved file processing (skipping hidden files)
-* v1.0.0: Cleaned up `preferences.py`, added docstrings and file documentation, added a live progress tracker
-
-
-<br><br>
 ## Working principle
 * Retrieving tags to process from the tags database
 * Running through the directories to decipher changes
