@@ -6,7 +6,7 @@ import os
 from file_analysis import read_tags
 
 
-def diff_lists (list_1: list, list_2: list):
+def diff_lists (list_1: list, list_2: list) -> (list, list):
     # case-sensitive, crude implementation, works very well for small lists
 
     add = list()
