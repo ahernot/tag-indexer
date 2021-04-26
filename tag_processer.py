@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
 import os
+import posix
 
 from alias_builder import make_alias
+from file_analysis import get_birthtime_formatted
 from preferences import *
 
 
@@ -94,7 +96,11 @@ def generate_tag_dirpath (tag: str):
     return tag_dirpath
 
 
+def generate_alias_relpath (file: posix.DirEntry):
+    alias_dirpath_rel = ''
+    alias_name = f'{get_birthtime_formatted (file)}-{file.name}'
 
+    return alias_dirpath_rel, alias_name
 
 
 def add_aliases (output_dirpath: str, tag_add_dict: dict):
@@ -114,14 +120,42 @@ def add_aliases (output_dirpath: str, tag_add_dict: dict):
         for file in tag_add_dict [tag]:
             
             # Generate alias filename
-            alias_name = file.name
-            ### TO COMPLETE
+            alias_dirpath_rel, alias_name = generate_alias_relpath (file)
+            alias_dirpath = os.path.join (tag_dirpath, alias_dirpath_rel)
+
+            try:
+                os.makedirs (alias_dirpath)
+            except FileExistsError:
+                pass
             
             # Make alias
-            make_alias (file.path, tag_dirpath, alias_name)
+            make_alias (file.path, alias_dirpath, alias_name)
+
+            ### TODO: MODIFY ALIAS CREATION DATE
 
 
 
-def remove_aliases (tag_remove_dict: dict):
-    pass
+def remove_aliases (output_dirpath: str, tag_remove_dict: dict):
+
+    for tag in tag_remove_dict:
+
+        # Generate tag dirpath
+        tag_dirpath_rel = generate_tag_dirpath (tag)
+        tag_dirpath = os.path.join (output_dirpath, tag_dirpath_rel)
+
+        # Run through files
+        for file in tag_remove_dict [tag]:
+            
+            # Generate alias path
+            alias_dirpath_rel, alias_name = generate_alias_relpath (file)
+            alias_path = os.path.join (tag_dirpath, alias_dirpath_rel, alias_name)
+
+            print('removing from', alias_path)
+            
+            # Remove alias
+            try:
+                os.remove (alias_path)
+            except FileNotFoundError:
+                pass
+                ### WRITE TO LOG
 
