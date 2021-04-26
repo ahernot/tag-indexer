@@ -10,6 +10,7 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 <br><br>
 ## To do
 * v2.0: Add docstrings
+* v2.0: Add folder reading option in main.py which reads yearmonth from folder hierarchy and adds it in alias_dirpath_rel: generate_alias_relpath()
 * v2.0: Add an option to delete all beacons
 * v2.0.1: Add instructions of use
 * v2.1: hard-store +ALIAS and -ALIAS >> on startup, rundown this task list first to avoid missing tags in case of crash
