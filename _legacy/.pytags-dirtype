@@ -1,0 +1,3 @@
+dirtype=YEAR-DIR
+dirtype=MONTH-DIR
+# test dirtype beacon to make it obvious to the program that this is a standard directory with 2020/2020_02 etc
