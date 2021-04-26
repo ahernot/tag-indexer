@@ -5,15 +5,15 @@ Read tags from a file
 import xattr
 import json
 from subprocess import Popen, PIPE
+import os
+import datetime
+import posix
 
-import preferences as Pref
-
-# DEFINE FILE-WIDE VARIABLES
-_lsep_ = Pref._lsep_
+from preferences import *
 
 
 
-def bplist_to_list(bplist: bytes) -> list:
+def bplist_to_list (bplist: bytes) -> list:
     """
     This function decodes bplist bytes strings. Adapted from https://stackoverflow.com/questions/8856032/reading-binary-plist-files-with-python.
     :param bplist: The bplist to decode
@@ -24,7 +24,7 @@ def bplist_to_list(bplist: bytes) -> list:
     p = Popen(args, stdin=PIPE, stdout=PIPE)
     out, err = p.communicate(bplist)
 
-    return json.loads(out)
+    return json.loads (out)
 
 
 
@@ -45,3 +45,18 @@ def read_tags (filepath: str) -> list:
 
     except:
         return list()
+
+
+
+# TODO: this function must implement a priority system for sources:
+# 1. EXIF
+# 2. File birthtime
+def get_birthtime_formatted (file: posix.DirEntry) -> str:
+    """
+    Get the birthtime of a file as a formatted '%Y%m%d-%H%M%S' string.
+    :param filepath: The path of the file
+    :return: The formatted birthtime string
+    """
+    birthtime = os.stat (file.path) .st_birthtime
+    birthtime_formatted = datetime.datetime.fromtimestamp (birthtime) .strftime (ALIAS_DATETIME_FORMAT)
+    return birthtime_formatted
