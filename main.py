@@ -18,4 +18,4 @@ if __name__ == '__main__':
         process_dir (sys.argv[1], sys.argv[2], ignore_beacons=False)
 
 
-# COMMAND: python3.9 main.py /Users/anatole/Downloads/_TEST_PYTAGS_ /Users/anatole/Documents/GitHub/tag-indexer/_tests/TEST-generated-aliases
+# COMMAND: python3.9 main.py /Users/anatole/Downloads/_TEST_PYTAGS_ /Users/anatole/Documents/GitHub/tag-indexer/__tests__/TEST-generated-aliases
