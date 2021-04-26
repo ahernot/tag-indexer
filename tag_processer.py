@@ -129,7 +129,7 @@ def add_aliases (output_dirpath: str, tag_add_dict: dict):
                 pass
             
             # Make alias
-            make_alias (file.path, alias_dirpath, alias_name)
+            alias_path = make_alias (file.path, alias_dirpath, alias_name)
 
             ### TODO: MODIFY ALIAS CREATION DATE
 
