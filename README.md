@@ -5,7 +5,7 @@
 
 
 This is a macOS platform-specific program designed to permanently alias (using the Unix aliasing method) files according to their tags.
-
+Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 
 <br><br>
 ## To do
