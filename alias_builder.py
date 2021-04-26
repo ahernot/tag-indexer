@@ -8,7 +8,7 @@ import os
 
 def make_alias (filepath: str, alias_dirpath: str, alias_name: str):
     """
-    This function creates an Unix alias of a file, using an AppleScript command run through macOS' terminal.
+    Create an Unix alias of a file, using an AppleScript command run through macOS' terminal.
     :param parent_path: The path of the file to alias
     :param child_path: The path of the alias to create (output)
     :return:
@@ -27,4 +27,4 @@ def make_alias (filepath: str, alias_dirpath: str, alias_name: str):
 
     os_command = f'osascript -e \'{applescript_command}\''
 
-    os.popen(os_command)
+    os.popen (os_command)
