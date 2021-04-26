@@ -24,6 +24,3 @@ def process_dir (dirpath: str, output_dirpath: str, ignore_beacons = False):
 
     # Remove aliases
     remove_aliases (output_dirpath, tag_remove_dict)
-
-
-
