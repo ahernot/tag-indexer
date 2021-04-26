@@ -19,10 +19,10 @@ def make_alias (filepath: str, alias_dirpath: str, alias_name: str):
 
     applescript_command = \
         f'set filePath to "{filepath}"\n' \
-        f'set aliasPath to "{alias_path}"\n' \
+        f'set aliasPath to "{alias_dirpath}"\n' \
         f'tell application "Finder"\n' \
         f'make new alias to POSIX file filePath at POSIX file aliasPath\n' \
-        f'set name of result to "{child_name}"\n' \
+        f'set name of result to "{alias_name}"\n' \
         f'end tell'
 
     os_command = f'osascript -e \'{applescript_command}\''
