@@ -43,7 +43,7 @@ def process_tag_arg (tag_arg: str, instr: str or None = None) -> str:
 
 
 # case-sensitive
-def process_tag (tag: str):
+def generate_tag_dirpath (tag: str):
     """
     Generate tag dirpath
 
@@ -97,34 +97,29 @@ def process_tag (tag: str):
 
 
 
-def add_aliases (tag_add_dict: dict):
+def add_aliases (output_dirpath: str, tag_add_dict: dict):
 
     for tag in tag_add_dict:
 
         # Generate tag dirpath
-        tag_dirpath = process_tag (tag)
+        tag_dirpath_rel = generate_tag_dirpath (tag)
+        tag_dirpath = os.path.join (output_dirpath, tag_dirpath_rel)
 
         try:
-            os.makedirs (alias_dirpath)
+            os.makedirs (tag_dirpath)
         except FileExistsError:
             pass
 
         # Run through files
-        for file in tag_name:
+        for file in tag_add_dict [tag]:
             
             # Generate alias filename
             alias_name = file.name
             ### TO COMPLETE
             
             # Make alias
-            make_alias (file.path, alias_dirpath, alias_name)
+            make_alias (file.path, tag_dirpath, alias_name)
 
-
-
-
-
-
-    pass
 
 
 def remove_aliases (tag_remove_dict: dict):
