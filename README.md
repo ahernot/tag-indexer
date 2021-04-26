@@ -9,16 +9,14 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 
 <br><br>
 ## To do
-* v2.0: Add docstrings
-* v2.0: Add folder reading option in main.py which reads yearmonth from folder hierarchy and adds it in alias_dirpath_rel: generate_alias_relpath()
-* v2.0: Add an option to delete all beacons
-* v2.0.1: Add instructions of use
+* v2.0.1: Add naming the file according to datetime: add a .pysorter-datetime file which acts as a datetime beacon for the current folder
+* v2.0.1: Add docstrings
+* v2.0.1: Add folder reading option in main.py which reads yearmonth from folder hierarchy and adds it in alias_dirpath_rel: generate_alias_relpath()
+* v2.0.2: Add an option to delete all beacons
+* v2.0.3: Add instructions of use
 * v2.1: hard-store +ALIAS and -ALIAS >> on startup, rundown this task list first to avoid missing tags in case of crash
-* Add naming the file according to datetime: add a .pysorter-datetime file which acts as a datetime beacon for the current folder
 * v2.1: Add an actions log (useful?)
 * v2.2: Add a `case_sensitivity` setting in `preferences.py`
-* v3: Only save processed tags (not in `unprocessed_tags_list`) to the `.pytags_tags` beacon
-* v3: Comply with sorting system hierarchies for reading actual file creation time and writing it to the alias file's name
 
 
 <br><br>
@@ -33,6 +31,4 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 ## Instructions
 * To be continued
 * To display hidden files (macOS): type `defaults write com.apple.finder AppleShowAllFiles YES` in the macOS Terminal app
-
-
 * Never manually add or delete alias files
