@@ -3,7 +3,7 @@
 import os
 import posix
 
-from alias_builder import make_alias
+from aliaser import make_alias
 from file_analysis import get_birthtime_formatted
 from preferences import *
 
