@@ -27,8 +27,8 @@ def process_dir (dirpath: str, output_dirpath: str, ignore_beacons: bool = False
     # Index files according to tags
     tag_add_dict, tag_remove_dict = index_files (file_dict, ignore_beacons=ignore_beacons)
 
-    print (f'Adding {dictlen(tag_add_dict)} aliases.\nRemoving {dictlen(tag_remove_dict)} aliases.')
-    # add to log
+    log.add_line (f'Adding {dictlen(tag_add_dict)} aliases.')
+    log.add_line (f'Removing {dictlen(tag_remove_dict)} aliases.')
 
     # Add aliases
     add_aliases (output_dirpath, tag_add_dict, log)
