@@ -10,12 +10,12 @@ import posix
 from preferences import *
 
 
-
 def bplist_to_list (bplist: bytes) -> list:
     """
-    This function decodes bplist bytes strings. Adapted from https://stackoverflow.com/questions/8856032/reading-binary-plist-files-with-python.
-    :param bplist: The bplist to decode
-    :return: The bplist's list representation
+    Decode bplist bytestrings
+    Adapted from https://stackoverflow.com/questions/8856032/reading-binary-plist-files-with-python
+    :param bplist: bplist to decode
+    :return: the bplist's list representation
     """
 
     args = ['plutil', '-convert', 'json', '-o', '-', '--', '-']
@@ -24,13 +24,11 @@ def bplist_to_list (bplist: bytes) -> list:
 
     return json.loads (out)
 
-
-
 def read_tags (filepath: str) -> list:
     """
-    This function reads the tags of a file/directory (macOS-specific).
-    :param filepath: The path of the file/directory to analyse
-    :return: The list of tags
+    Read the tags of a file/directory (macOS-specific)
+    :param filepath: filepath to analyse
+    :return: list of tags
     """
 
     try:
@@ -44,16 +42,14 @@ def read_tags (filepath: str) -> list:
     except:
         return list()
 
-
-
 # TODO: this function must implement a priority system for sources:
 # 1. EXIF
 # 2. File birthtime
 def get_birthtime_formatted (file: posix.DirEntry) -> str:
     """
-    Get the birthtime of a file as a formatted '%Y%m%d-%H%M%S' string.
-    :param filepath: The path of the file
-    :return: The formatted birthtime string
+    Get the birthtime of a file as a formatted string
+    :param filepath: filepath to analyse
+    :return: formatted datetime string
     """
     birthtime = os.stat (file.path) .st_birthtime
     birthtime_formatted = datetime.datetime.fromtimestamp (birthtime) .strftime (ALIAS_DATETIME_FORMAT)
