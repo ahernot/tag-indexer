@@ -8,9 +8,11 @@ preferences_path = main_path + 'preferences.txt'
 
 
 # BEGIN UPDATED FILE
+LOG_FILENAME = 'log.txt'
 BEACON_NAME = '.pytags-beacon'
 
 ALIAS_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
+LOG_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
 
 RTAG = '%'
 TAG_NOCAT = 'Others'
