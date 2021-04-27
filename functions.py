@@ -17,4 +17,10 @@ def dictlen (tag_dict: dict):
     return l
 
 def get_datetime (datetime_format: str):
+    """
+    Get the current datetime as a formatted string
+    :param datetime_format: format string
+    :return: formatted datetime string
+    """
+    
     return datetime.datetime.now () .strftime (datetime_format)
