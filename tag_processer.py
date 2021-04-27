@@ -9,15 +9,6 @@ from preferences import *
 from logger import Log
 
 
-"""
-goals for this file:
-* generate alias name (datetime, …)
-
-to do:
-
-"""
-
-
 def process_tag_arg (tag_arg: str, instr: str or None = None) -> str:
     """
     Process tag argument
