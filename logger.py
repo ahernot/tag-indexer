@@ -3,18 +3,15 @@
 import os
 import datetime
 
+from functions import get_datetime
 from preferences import *
-
-
-def get_datetime ():
-    return datetime.datetime.now () .strftime (LOG_DATETIME_FORMAT)
 
 
 class Log:
 
     def __init__ (self, dirpath: str):
         self._content_add = list()
-        self.start_dt = get_datetime()
+        self.start_dt = get_datetime(datetime_format=LOG_DATETIME_FORMAT)
 
         self.path = os.path.join (dirpath, LOG_FILENAME)
 
@@ -42,7 +39,7 @@ class Log:
         return header
 
     def save (self):
-        self.stop_dt = get_datetime()
+        self.stop_dt = get_datetime(datetime_format=LOG_DATETIME_FORMAT)
 
         with open (self.path, 'a', encoding='utf-8') as log:
             log.write ('\n')

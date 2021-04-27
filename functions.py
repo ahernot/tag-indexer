@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+import datetime
+
+
 def dictlen (tag_dict: dict):
     """
     Get the total length of all the elements of a dict like {key: [elements_list]}
@@ -12,3 +15,6 @@ def dictlen (tag_dict: dict):
         l += len (tag_dict [tag])
     
     return l
+
+def get_datetime (datetime_format: str):
+    return datetime.datetime.now () .strftime (datetime_format)
