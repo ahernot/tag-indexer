@@ -25,7 +25,7 @@ class Log:
             pass
 
     def add_line (self, line: str):
-        self._content_add += line
+        self._content_add.append (line)
 
     def save (self):
         dt = get_datetime ()
