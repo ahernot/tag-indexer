@@ -16,9 +16,13 @@ def make_alias (filepath: str, alias_dirpath: str, alias_name: str):
     # Build alias path
     alias_path = os.path.join (alias_dirpath, alias_name)
 
-    # Exceptions
-    if not os.path.exists (filepath) or not os.path.exists (alias_dirpath) or os.path.exists (alias_path):
+    # Exception: original or target path not existing
+    if not os.path.exists (filepath) or not os.path.exists (alias_dirpath):
         raise FileNotFoundError
+
+    # Exception: alias already exists
+    if os.path.exists (alias_path):
+        return alias_path
 
     # Generate command
     applescript_command = \
