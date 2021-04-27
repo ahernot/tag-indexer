@@ -15,7 +15,11 @@ BEACON_NAME = '.pytags-beacon'
 ALIAS_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
 LOG_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
 
+# Log messages
 LOGMSG_MISSING_DELETE = 'Unable to find path for deletion:'
+LOGREC_MISSING_DELETE = 'Recommend database deletion and reindexing'  # to implement
+LOGMSG_DUPLICATE_ALIAS = 'Alias file already exists:'  # to implement
+LOGREC_DUPLICATE_ALIAS = 'Recommend database deletion and reindexing'  # to implement
 
 RTAG = '%'
 TAG_NOCAT = 'Others'
@@ -48,28 +52,3 @@ TAGS_DICT = {
     f'scene{RTAG}': ['Scenes (legacy)', RTAG, 'space-before-uppercase'],
     f'shotby{RTAG}': ['Photographers', RTAG, 'space-before-uppercase']
 }
-
-
-
-
-
-
-_files_ = '_files_'
-
-_dbsep_ = '\t' # database separator
-_dsep_ = '\t' # data separator
-_lsep_ = '\n' # line separator
-_psep_ = '/' # path separator
-_esep_ = '.' # extension separator
-_tsep_ = ', ' # tags list separator
-_ssep_ = ' ' # space separator
-
-
-# alias_dir = 'TEST-generated-aliases/'
-
-# tag_placeholder	= '%'
-# database_name = 'database.txt'
-# beacon_tags_name = '.pytags_tags'
-# beacon_sizes_name = '.pytags_sizes'
-
-
