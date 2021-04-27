@@ -97,7 +97,7 @@ def generate_tag_dirpath (tag: str):
 
 def generate_alias_relpath (file: posix.DirEntry):
     alias_dirpath_rel = ''
-    alias_name = f'{get_birthtime_formatted (file)}-{file.name}'
+    alias_name = f'{get_birthtime_formatted (file)} – {file.name}'
 
     return alias_dirpath_rel, alias_name
 
