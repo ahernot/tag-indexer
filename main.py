@@ -11,8 +11,11 @@ import sys
 from coordinator import process_dir
 
 
+# Ignore beacons during alias creation
+IGNORE_BEACONS = False
+
 if __name__ == '__main__':
     
     if len(sys.argv) == 3:
 
-        process_dir (sys.argv[1], sys.argv[2], ignore_beacons=False)
+        process_dir (sys.argv[1], sys.argv[2], ignore_beacons=IGNORE_BEACONS)
