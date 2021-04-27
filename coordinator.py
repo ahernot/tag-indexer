@@ -3,6 +3,7 @@
 from parser import read_dir
 from indexer import index_files
 from tag_processer import add_aliases, remove_aliases
+from cleaner import clean_dir
 
 from logger import Log
 
@@ -35,6 +36,9 @@ def process_dir (dirpath: str, output_dirpath: str, ignore_beacons: bool = False
 
     # Remove aliases
     remove_aliases (output_dirpath, tag_remove_dict, log)
+
+    # Clean aliases' directory
+    clean_dir (output_dirpath)
 
     # Save log
     log.save()
