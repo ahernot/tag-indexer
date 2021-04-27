@@ -14,6 +14,8 @@ BEACON_NAME = '.pytags-beacon'
 ALIAS_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
 LOG_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
 
+LOGMSG_MISSING_DELETE = 'Unable to find path for deletion:'
+
 RTAG = '%'
 TAG_NOCAT = 'Others'
 
