@@ -14,7 +14,7 @@ goals for this file:
 * generate alias name (datetime, …)
 
 to do:
-add update big aliases database >> can build file hyperlinks too
+
 """
 
 
