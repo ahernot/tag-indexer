@@ -13,8 +13,6 @@ from logger import Log
 goals for this file:
 * generate alias folder (processed tag name)
 * generate alias name (datetime, …)
-* make alias file
-* destroy alias file
 
 to do:
 add update big aliases database >> can build file hyperlinks too
