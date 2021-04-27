@@ -39,7 +39,6 @@ def remove_beacons (dirpath: str, beacon_name: str = BEACON_NAME):
 
     beacon_pathlist = recur (dirpath, list())
 
-
 def clean_dir (dirpath: str):
     """
     Remove empty children folders within dirpath
