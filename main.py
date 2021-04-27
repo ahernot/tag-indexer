@@ -15,4 +15,4 @@ if __name__ == '__main__':
     
     if len(sys.argv) == 3:
 
-        process_dir (sys.argv[1], sys.argv[2], ignore_beacons=True)
+        process_dir (sys.argv[1], sys.argv[2], ignore_beacons=False)
