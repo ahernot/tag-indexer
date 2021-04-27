@@ -9,6 +9,7 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 
 <br><br>
 ## To do
+* v2.0.1: Do cleaner.py
 * v2.0.1: Add naming the file according to datetime: add a .pysorter-datetime file which acts as a datetime beacon for the current folder
 * v2.0.1: Add docstrings
 * v2.0.1: Add folder reading option in main.py which reads yearmonth from folder hierarchy and adds it in alias_dirpath_rel: generate_alias_relpath()
