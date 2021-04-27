@@ -1,17 +1,10 @@
-
-import os
-
-#   DEFINING FILE-WIDE VARIABLES
-main_path = os.path.realpath(__file__).replace('preferences.py', '')
-preferences_path = main_path + 'preferences.txt'
-
-
 VERSION = '2.0.0'
 
 # BEGIN UPDATED FILE
 LOG_FILENAME = 'log.txt'
 BEACON_NAME = '.pytags-beacon'
 
+# Datetime formats
 ALIAS_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
 LOG_DATETIME_FORMAT = '%Y%m%d-%H%M%S'
 
@@ -21,11 +14,10 @@ LOGREC_MISSING_DELETE = 'Recommend database deletion and reindexing'  # to imple
 LOGMSG_DUPLICATE_ALIAS = 'Alias file already exists:'  # to implement
 LOGREC_DUPLICATE_ALIAS = 'Recommend database deletion and reindexing'  # to implement
 
+# Tags
 RTAG = '%'
 TAG_NOCAT = 'Others'
 
-# placeholder can only be the last element of the string, and only in subdir
-# for tags with placeholder: [dir, subdir, format-instructions]
 TAGS_DICT = {
     # Specific tags
     'Awesome Photo': ['Ratings', 'Awesome Photos'],
@@ -52,3 +44,6 @@ TAGS_DICT = {
     f'scene{RTAG}': ['Scenes (legacy)', RTAG, 'space-before-uppercase'],
     f'shotby{RTAG}': ['Photographers', RTAG, 'space-before-uppercase']
 }
+
+# placeholder can only be the last element of the string, and only in subdir
+# for tags with placeholder: [dir, subdir, format-instructions]
