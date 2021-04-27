@@ -9,10 +9,9 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 
 <br><br>
 ## To do
-* v2.0.1: Do cleaner.py
 * v2.0.1: Add docstrings
 * v2.0.1: Add folder reading option in main.py which reads yearmonth from folder hierarchy and adds it in alias_dirpath_rel: generate_alias_relpath()
-* v2.0.2: Add an option to delete all beacons
+* v2.0.2: Implement `cleaner.clean_dir` function
 * v2.0.3: Add instructions of use
 * v2.1: Add an option to modify the aliases' file creation datetimes to match their liked files'
 * v2.2: Add a `case_sensitivity` setting in `preferences.py`
