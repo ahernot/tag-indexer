@@ -14,6 +14,7 @@ class Log:
 
     def __init__ (self, dirpath: str):
         self._content_add = list()
+        self.start_dt = get_datetime()
 
         self.path = os.path.join (dirpath, LOG_FILENAME)
 
@@ -27,14 +28,26 @@ class Log:
     def _reset (self):
 
         with open (self.path, 'w', encoding='utf-8') as log:
-            pass
+            log.write('pytags log\n')
 
     def add_line (self, line: str):
         self._content_add.append (line)
 
+    def _make_header (self):
+        header = [
+            f'pytags version {VERSION}\n',
+            f'start datetime: {self.start_dt}\n',
+            f'stop datetime: {self.stop_dt}\n'
+        ]
+        return header
+
     def save (self):
-        dt = get_datetime ()
+        self.stop_dt = get_datetime()
 
         with open (self.path, 'a', encoding='utf-8') as log:
+            log.write ('\n')
+
+            log.writelines( self._make_header() )
+
             for line in self._content_add:
-                log.write (f'{dt} – {line}\n')
+                log.write (f'{line}\n')
