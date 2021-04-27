@@ -5,7 +5,7 @@ import os
 from preferences import *
 
 
-def remove_beacons (dirpath: str, beacon_name: str = BEACON_NAME):
+def remove_beacons (dirpath: str, beacon_name: str = BEACON_FILENAME):
     """
     Recursively remove all beacons from a directory and its subdirectories
     :param dirpath: path of the directory to alter

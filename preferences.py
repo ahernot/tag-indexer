@@ -1,8 +1,8 @@
 VERSION = '2.0.0'
 
-# BEGIN UPDATED FILE
+# Filenames
 LOG_FILENAME = 'log.txt'
-BEACON_NAME = '.pytags-beacon'
+BEACON_FILENAME = '.pytags-beacon'
 
 # Datetime formats
 ALIAS_DATETIME_FORMAT = '%Y%m%d-%H%M%S'

@@ -13,7 +13,7 @@ def read_dir (dirpath: str):
         subdirs = list()
 
         # Generate beacon path (regardless of its existence)
-        beacon_path = os.path.join (dirpath, BEACON_NAME)
+        beacon_path = os.path.join (dirpath, BEACON_FILENAME)
 
         # Initialise dict entry
         file_dict [beacon_path] = list()
