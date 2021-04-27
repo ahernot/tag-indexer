@@ -102,7 +102,7 @@ def generate_alias_relpath (file: posix.DirEntry):
     return alias_dirpath_rel, alias_name
 
 
-def add_aliases (output_dirpath: str, tag_add_dict: dict, log: Log = None)):
+def add_aliases (output_dirpath: str, tag_add_dict: dict, log: Log = None):
 
     # Run through tags
     for tag in tag_add_dict:
