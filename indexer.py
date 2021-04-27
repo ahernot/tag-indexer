@@ -8,6 +8,13 @@ from file_analysis import read_tags
 
 def diff_lists (list_1: list, list_2: list) -> (list, list):
     # case-sensitive, crude implementation, works very well for small lists
+    """
+    Compute the difference lists between two lists (from list_1 to list_2)
+    Case-sensitive, works better for smaller lists
+    :param list_1: start list
+    :param list_2: end list
+    :return: add_list, remove_list (from list_1 to list_2)
+    """
 
     add = list()
     remove = list()
@@ -24,6 +31,12 @@ def diff_lists (list_1: list, list_2: list) -> (list, list):
 
 
 def index_files (file_dict: dict, ignore_beacons = False):
+    """
+    Index files from directory parse result
+    :param file_dict: dictionary of files indexed by their beacon's path
+    :param ignore_beacons: ignore beacon contents and reindex every tag
+    :return: dictionary of added tags, dictionary of removed tags
+    """
 
     tag_add_dict = dict()
     tag_remove_dict = dict()
