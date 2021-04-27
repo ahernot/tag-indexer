@@ -11,7 +11,6 @@ from logger import Log
 
 """
 goals for this file:
-* generate alias folder (processed tag name)
 * generate alias name (datetime, …)
 
 to do:
@@ -132,8 +131,6 @@ def add_aliases (output_dirpath: str, tag_add_dict: dict, log: Log = None):
             alias_path = make_alias (file.path, alias_dirpath, alias_name)
 
             ### TODO: MODIFY ALIAS CREATION DATE
-
-
 
 def remove_aliases (output_dirpath: str, tag_remove_dict: dict, log: Log = None):
 
