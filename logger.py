@@ -18,9 +18,14 @@ class Log:
         self.path = os.path.join (dirpath, LOG_FILENAME)
 
         if not os.path.exists (self.path):
+            try:
+                os.makedirs (dirpath)
+            except:
+                pass
             self._reset()
         
     def _reset (self):
+
         with open (self.path, 'w', encoding='utf-8') as log:
             pass
 
