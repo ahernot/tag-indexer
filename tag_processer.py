@@ -21,6 +21,9 @@ add update big aliases database >> can build file hyperlinks too
 def process_tag_arg (tag_arg: str, instr: str or None = None) -> str:
     """
     Process tag argument
+    :param tag_arg: tag argument
+    :param instr: processing instruction
+    :return: processed tag argument
     """
 
     # No instruction
@@ -40,13 +43,12 @@ def process_tag_arg (tag_arg: str, instr: str or None = None) -> str:
 
         return tag_arg_new
 
-
-
-# case-sensitive
 def generate_tag_dirpath (tag: str):
     """
-    Generate tag dirpath
-
+    Generate tag dirpath using the rules specified in preferences.py
+    Case-sensitive
+    :param tag: tag to generate for
+    :return: dirpath
     """
 
     # Run through referenced tags
@@ -93,15 +95,26 @@ def generate_tag_dirpath (tag: str):
     tag_dirpath = os.path.join (TAG_NOCAT, tag)
     return tag_dirpath
 
-
 def generate_alias_relpath (file: posix.DirEntry):
+    """
+    Generate alias subdirectory and filename
+    :param file: file to alias
+    :return: alias subdirectory's relative path, alias filename
+    """
+
     alias_dirpath_rel = ''
     alias_name = f'{get_birthtime_formatted (file)} – {file.name}'
 
     return alias_dirpath_rel, alias_name
 
-
 def add_aliases (output_dirpath: str, tag_add_dict: dict, log: Log = None):
+    """
+    Create file aliases
+    :param output_dirpath: alias files' parent dirpath
+    :param tag_add_dict: tags to add for
+    :param log: log
+    :return: none
+    """
 
     # Run through tags
     for tag in tag_add_dict:
@@ -133,6 +146,13 @@ def add_aliases (output_dirpath: str, tag_add_dict: dict, log: Log = None):
             ### TODO: MODIFY ALIAS CREATION DATE
 
 def remove_aliases (output_dirpath: str, tag_remove_dict: dict, log: Log = None):
+    """
+    Delete file aliases
+    :param output_dirpath: alias files' parent dirpath
+    :param tag_add_dict: tags to add for
+    :param log: log
+    :return: none
+    """
 
     for tag in tag_remove_dict:
 
