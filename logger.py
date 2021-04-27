@@ -39,6 +39,9 @@ class Log:
         return header
 
     def save (self):
+        """
+        Write changes to log
+        """
         self.stop_dt = get_datetime(datetime_format=LOG_DATETIME_FORMAT)
 
         with open (self.path, 'a', encoding='utf-8') as log:
@@ -48,3 +51,6 @@ class Log:
 
             for line in self._content_add:
                 log.write (f'{line}\n')
+        
+        # Reset content list
+        self._content_add = list()
