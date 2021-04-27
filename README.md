@@ -9,9 +9,9 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 <br>
 
 ## To do
-* v2.0.1: Add folder reading option in main.py which reads yearmonth from folder hierarchy and adds it in alias_dirpath_rel: generate_alias_relpath()
+* v2.0.2: Add instructions of use
+* v2.0.2: Add folder reading option in main.py which reads yearmonth from folder hierarchy and adds it in alias_dirpath_rel: generate_alias_relpath()
 * v2.0.2: Implement `cleaner.clean_dir` function
-* v2.0.3: Add instructions of use
 * v2.1: Add an option to modify the aliases' file creation datetimes to match their liked files', in `tag_processer.add_aliases`
 * v2.2: hard-store +ALIAS and -ALIAS >> on startup, rundown this task list first to avoid missing tags in case of crash
 * v2.2: Add naming the file according to datetime: add a .pysorter-datetime file which acts as a datetime beacon for the current folder
