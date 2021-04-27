@@ -3,7 +3,7 @@
 """
 File indexing utility
 @author: Anatole Hernot
-@version: 2.0
+@version: 2.0.1
 """
 
 import sys
