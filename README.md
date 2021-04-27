@@ -35,3 +35,5 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 * To be continued
 * To display hidden files (macOS): type `defaults write com.apple.finder AppleShowAllFiles YES` in the macOS Terminal app
 * Never manually add or delete alias files
+
+* Use `cleaner.remove_beacons` function to remove all the beacon files from a directory and its subdirectories
