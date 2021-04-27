@@ -6,6 +6,11 @@ from preferences import *
 
 
 def read_dir (dirpath: str):
+    """
+    Parse dirpath to reference files and their beacon's path
+    :param dirpath: dirpath to parse
+    :return: dictionary of files indexed by their beacon's path
+    """
 
     def recur (dirpath: str, file_dict: dict):
 
