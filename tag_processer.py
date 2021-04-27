@@ -6,6 +6,7 @@ import posix
 from aliaser import make_alias
 from file_analysis import get_birthtime_formatted
 from preferences import *
+from logger import Log
 
 
 """
@@ -103,8 +104,9 @@ def generate_alias_relpath (file: posix.DirEntry):
     return alias_dirpath_rel, alias_name
 
 
-def add_aliases (output_dirpath: str, tag_add_dict: dict):
+def add_aliases (output_dirpath: str, tag_add_dict: dict, log: Log = None)):
 
+    # Run through tags
     for tag in tag_add_dict:
 
         # Generate tag dirpath
@@ -135,7 +137,7 @@ def add_aliases (output_dirpath: str, tag_add_dict: dict):
 
 
 
-def remove_aliases (output_dirpath: str, tag_remove_dict: dict):
+def remove_aliases (output_dirpath: str, tag_remove_dict: dict, log: Log = None):
 
     for tag in tag_remove_dict:
 
@@ -149,13 +151,9 @@ def remove_aliases (output_dirpath: str, tag_remove_dict: dict):
             # Generate alias path
             alias_dirpath_rel, alias_name = generate_alias_relpath (file)
             alias_path = os.path.join (tag_dirpath, alias_dirpath_rel, alias_name)
-
-            print('removing from', alias_path)
             
             # Remove alias
             try:
                 os.remove (alias_path)
             except FileNotFoundError:
-                pass
-                ### WRITE TO LOG
-
+                log.add_line (f'{LOGMSG_MISSING_DELETE} {alias_path}')  # write to log
