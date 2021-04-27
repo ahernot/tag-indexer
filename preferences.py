@@ -6,6 +6,7 @@ main_path = os.path.realpath(__file__).replace('preferences.py', '')
 preferences_path = main_path + 'preferences.txt'
 
 
+VERSION = '2.0.0'
 
 # BEGIN UPDATED FILE
 LOG_FILENAME = 'log.txt'
