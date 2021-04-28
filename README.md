@@ -39,5 +39,5 @@ Recursive parsing and linear algorithm (v1.0.0 was full recursive).
 
 
 ### Beacons
-`.pytags-beacon`: references all files in a directory, with their tags. JSON format
+`.pytags-beacon`: references all files in a directory, with their tags. JSON format<br>
 `.pytags-skipdir`: (NOT IMPLEMENTED) skip parsing of a directory and its subdirectories
