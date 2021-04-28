@@ -14,6 +14,10 @@ def read_dir (dirpath: str):
 
     def recur (dirpath: str, file_dict: dict):
 
+        # Path not existing (error)
+        if not os.path.exists (dirpath):
+            return file_dict  # INCLUDE IN LOG
+
         # Initialise list of subdirs to parse
         subdirs = list()
 
